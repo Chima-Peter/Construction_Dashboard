@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { useBaseContext } from '../../main'
+import { useBaseContext } from '../main'
 
 function ErrorPage() {
    const base = useBaseContext()
