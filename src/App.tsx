@@ -4,7 +4,7 @@ import ViewProjects from "./features/ViewProject/ViewProject"
 
 export function App() {
   return (
-      <BrowserRouter basename={import.meta.env.DEV ? '/' : '/repo/'}>
+      <BrowserRouter basename={import.meta.env.DEV ? '/' : '/Seamless/'}>
          <Routes>
             <Route path="*" element={<ErrorPage />} />
             <Route path="/" element={<ViewProjects />} />
