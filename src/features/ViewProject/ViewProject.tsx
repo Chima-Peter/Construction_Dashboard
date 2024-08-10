@@ -1,13 +1,20 @@
-import { useRef, useState } from "react"
+import { createContext, useRef, useState } from "react"
 import Budget from "./budget/Budget"
 import ProjectDetails from "./project_details/ProjectDetails"
 import Resources from "./resources/Resources"
 import { useAppSelector } from "../../app/hooks"
 import { selectCompleteProjects, selectWorkingProjects } from "./ViewProjectSlice"
+import Footer from "../../utils/footer"
+import DesktopNav from "../../utils/DesktopNav"
+import MediaQuery from "react-responsive"
+import MobileNav from "../../utils/mobile_nav"
 
+
+export const IdContext = createContext('')
 
 function ViewProjects() {
 
+   const [id, setId] = useState('')
    // ref to get checkbox
    const checkRefs = useRef<(HTMLInputElement | null)[]>([])
 
@@ -44,20 +51,29 @@ function ViewProjects() {
    }
 
    const handleOption = (event: React.ChangeEvent<HTMLSelectElement>) => {
-      if (event.target.value !== '') setShow(true);
+      if (event.target.value !== '') {
+         setId(event.target.value)
+         setShow(true)
+      }
       else setShow(false)
    }
 
    return (
-      <main className="bg-gray-200 p-4 min-h-[100vh] flex flex-col gap-6 font-main">
-         <form className="bg-white w-[100%] p-4 shadow-lg flex gap-4 flex-wrap">
-            <select onChange={handleOption} name="project" id="project" className="appearance-none py-2 px-4 border bg-white text-sm font-main tracking-tight text-gray-500 border-gray-200 outline-none focus:shadow-lg shadow-md rounded-md">
+      <main className="bg-white min-h-[100vh] flex flex-col gap-6 font-main">
+         <MediaQuery maxWidth={786}>
+            <MobileNav />
+         </MediaQuery>
+         <MediaQuery minWidth={787}>
+            <DesktopNav />
+         </MediaQuery>
+         <form className="bg-white w-[100%] pb-4 shadow-lg flex gap-4 flex-wrap px-4">
+            <select onChange={handleOption} name="project" id="project" className="appearance-none p-2 border bg-white text-sm font-main tracking-tight text-gray-500 border-gray-200 outline-none focus:shadow-lg shadow-md rounded-md">
                <option value="">
                   Select project
                </option>
                {
                   projects.map(project => (
-                     <option value={project.projectDetails.name} key={project.projectDetails.name}>
+                     <option value={project.id} key={project.projectDetails.name}>
                         {project.projectDetails.name}
                      </option>
                   ))
@@ -73,19 +89,20 @@ function ViewProjects() {
             </label>
          </form>
          {
-            show ? <>
+            show ? <IdContext.Provider value={id}>
                <ProjectDetails />
-               <section className="flex w-[100%] gap-4 justify-normal md:justify-between flex-wrap">
+               <section className="flex w-[100%] gap-4 justify-normal md:justify-between flex-wrap px-2 md:px-4 lg:px-8">
                   <Resources />
                   <Budget />
                </section>
-            </> :
+            </IdContext.Provider> :
                <div className="w-[100%] flex justify-center items-center min-h-[50vh]">
                   <h1 className="text-xl font-semibold text-blue-900">
                      Select a project to view...
                   </h1>
                </div>
          }
+         <Footer />
       </main>
    )
 }

@@ -1,6 +1,8 @@
 import { BarChart, Bar, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, XAxis } from 'recharts';
 import { useAppSelector } from '../../../app/hooks';
-import { selectAllResources } from '../ViewProjectSlice';
+import { selectProjectById } from '../ViewProjectSlice';
+import { useContext } from 'react';
+import { IdContext } from '../ViewProject';
 
 
 const renderCustomBarLabel = ({ x, y, width, value }: any) => {
@@ -10,7 +12,7 @@ const renderCustomBarLabel = ({ x, y, width, value }: any) => {
 function CustomTooltip({ payload, active }: any) {
   if (active) {
     return (
-      <div className="bg-[#2A3A5F] w-[100%] p-2 rounded-sm">
+      <div className="bg-green-700 w-[100%] p-2 rounded-sm">
         <p className="text-xs text-white font-medium">
             {`${payload[0].payload.name} : ${payload[0].value} ${payload[0].payload.quantity}`}
          </p>
@@ -22,16 +24,17 @@ function CustomTooltip({ payload, active }: any) {
 }
 
 export default function ResourcesChart() {
-  let resources = useAppSelector(state => selectAllResources(state));
+   const id = useContext(IdContext)
+  let resources = useAppSelector(state => selectProjectById(state, id));
 
   return (
     <ResponsiveContainer width="100%" height={200}>
-      <BarChart data={resources[2]}>
-        <YAxis className='text-xs text-[#2A3A5F]' />
-        <XAxis className='text-xs text-[#2A3A5F]' />
+      <BarChart data={resources?.resources}>
+        <YAxis className='text-xs text-green-700' />
+        <XAxis className='text-xs text-green-700' />
         <Tooltip content={<CustomTooltip />} />
         <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
-        <Bar dataKey="units" fill="#2A3A5F" barSize={10} label={renderCustomBarLabel} />
+        <Bar dataKey="units" fill="green" barSize={15} label={renderCustomBarLabel} />
       </BarChart>
     </ResponsiveContainer>
   );

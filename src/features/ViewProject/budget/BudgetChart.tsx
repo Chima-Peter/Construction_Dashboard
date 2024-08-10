@@ -4,7 +4,7 @@ import { selectAllBudgets } from "../ViewProjectSlice";
 import numberWithCommas from "../../../utils/numberWithCommas";
 
 
-const COLORS = ['#F4A261', '#264653', '#2A9D8F', '#E9C46A', '#E76F51', '#8D99AE', '#D4A5A5'];
+const COLORS = ['blue', 'green', 'orange', 'purple', 'red', '#8D99AE', '#D4A5A5'];
 
 const RADIAN = Math.PI / 180;
 
@@ -35,7 +35,7 @@ const BudgetChart = () => {
    function CustomTooltip({ payload, active }: any) {
       if (active) {
          return (
-            <div className="bg-white w-[100%] p-2 rounded-sm">
+            <div className="bg-white w-[100%] p-2 rounded-sm shadow-lg">
             <p className="text-xs text-inherit font-medium">
                   {`${payload[0].payload.name} : ${budget[2].quantity}${numberWithCommas(payload[0].value)}`}
                </p>

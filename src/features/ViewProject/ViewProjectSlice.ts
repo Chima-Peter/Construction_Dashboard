@@ -1,4 +1,4 @@
-import { createSlice, createSelector } from "@reduxjs/toolkit";
+import { createSlice, createSelector, nanoid } from "@reduxjs/toolkit";
 import { RootState } from "../../app/store";
 
 export interface ProjectDetails {
@@ -28,7 +28,8 @@ export interface ViewProjectProps {
    projectDetails: ProjectDetails,
    resources: ResourceProps[],
    budget: BudgetProps,
-   status: 'completed' | 'in progress'
+   status: 'completed' | 'in progress',
+   id: string
 }
 
 
@@ -62,7 +63,8 @@ const initialState: ViewProjectProps[] = [
          totalBudget: 18500000,
          quantity: '₦'
       },
-      status: "in progress"
+      status: "in progress",
+      id: nanoid()
    },
    {
       projectDetails: {
@@ -92,7 +94,8 @@ const initialState: ViewProjectProps[] = [
          totalBudget: 17500000,
          quantity: '₦'
       },
-      status: "completed"
+      status: "completed",
+      id: nanoid()
    },
    {
       projectDetails: {
@@ -122,7 +125,8 @@ const initialState: ViewProjectProps[] = [
          totalBudget: 47000000,
          quantity: '₦'
       },
-      status: "in progress"
+      status: "in progress",
+      id: nanoid()
    },
    {
       projectDetails: {
@@ -152,7 +156,8 @@ const initialState: ViewProjectProps[] = [
          totalBudget: 13000000,
          quantity: '₦'
       },
-      status: "completed"
+      status: "completed",
+      id: nanoid()
    },
    {
       projectDetails: {
@@ -182,7 +187,8 @@ const initialState: ViewProjectProps[] = [
          totalBudget: 26000000,
          quantity: '₦'
       },
-      status: "in progress"
+      status: "in progress",
+      id: nanoid()
    }
 ]
 
@@ -216,4 +222,11 @@ export const selectCompleteProjects = createSelector(
 
 export const selectWorkingProjects = createSelector(
    (state: RootState) => state.view, (view) => view.filter(project => project.status === 'in progress')
+)
+
+export const selectAllProjects = (state:RootState) => state.view
+
+export const selectProjectById = createSelector(
+   [selectAllProjects, (_state, projectId) => projectId], 
+   (view, projectId) => view.find(project => project.id === projectId)
 )

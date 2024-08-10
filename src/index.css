@@ -9,3 +9,6 @@
       src: url('/fonts/Inter.ttf');
    }
 }
+.active {
+   border-bottom: 2px solid white;
+}

@@ -1,10 +1,11 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { PieChart, Pie, Sector, Cell } from 'recharts';
 import { useAppSelector } from '../../../app/hooks';
-import { selectAllProjectDetails } from '../ViewProjectSlice';
+import { selectProjectById } from '../ViewProjectSlice';
+import { IdContext } from '../ViewProject';
 
 // Define colors for the pie chart slices
-const COLORS = ['#F2994A', 'lightgray'];
+const COLORS = ['blue', 'lightgray'];
 
 // Define the renderActiveShape function for the active slice
 const renderActiveShape = (props: any) => {
@@ -13,10 +14,10 @@ const renderActiveShape = (props: any) => {
 
   return (
     <g>
-      <text x={cx} y={cy} dy={-30} textAnchor="middle"  className='font-medium text-5xl' fill='#F2994A'>
+      <text x={cx} y={cy} dy={-30} textAnchor="middle"  className='font-medium text-5xl' fill='blue'>
         {value}%
       </text>
-      <text x={cx} y={cy} dy={-5} textAnchor="middle"  className='font-medium text-sm text-black uppercase' fill='#F2994A'>
+      <text x={cx} y={cy} dy={-5} textAnchor="middle"  className='font-medium text-sm text-black uppercase' fill='blue'>
         {name}
       </text>
       <Sector
@@ -42,7 +43,8 @@ const renderActiveShape = (props: any) => {
 };
 
 export default function ViewProjectChart() {
-   const ProjectProgress = useAppSelector(state => selectAllProjectDetails(state))
+   const id = useContext(IdContext)
+   const ProjectProgress = useAppSelector(state => selectProjectById(state,id))
 
    const [activeIndex, setActiveIndex] = useState<number>(0);
 
@@ -53,9 +55,9 @@ export default function ViewProjectChart() {
    };
 
    const data = [
-      { name: 'completed', value: ProjectProgress[4].progress },
-      { name: 'remaining', value: 100 - ProjectProgress[4].progress },
-  ];
+      { name: 'completed', value: ProjectProgress?.projectDetails.progress ?? 0 },
+      { name: 'remaining', value: 100 - (ProjectProgress?.projectDetails.progress ?? 0) },
+  ]
 
   return (
     <PieChart width={270} height={270}>
@@ -68,6 +70,7 @@ export default function ViewProjectChart() {
         fill="#F2994A"
         paddingAngle={0}
         dataKey="value"
+        className='outline-none'
         activeIndex={activeIndex}
         activeShape={renderActiveShape}
         onMouseEnter={() => {

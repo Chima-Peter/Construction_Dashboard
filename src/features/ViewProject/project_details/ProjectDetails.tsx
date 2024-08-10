@@ -1,22 +1,24 @@
+import { useContext } from "react"
 import { useAppSelector } from "../../../app/hooks"
-import { selectAllProjectDetails } from "../ViewProjectSlice"
+import { selectProjectById } from "../ViewProjectSlice"
 import ViewProjectChart from "./ViewProjectChart"
+import { IdContext } from "../ViewProject"
 
 
 function ProjectDetails() {
-   const ProjectDetailsSelector = useAppSelector(state => selectAllProjectDetails(state))
-
+   const id = useContext(IdContext)
+   const ProjectDetailsSelector = useAppSelector((state) => selectProjectById(state, id))
 
    return (
-      <section className="flex gap-4 flex-wrap w-[100%] justify-normal lg:justify-between">
-         <div className="p-4 bg-white border border-white items-center rounded-sm shadow-lg w-[100%] lg:w-fit h-[290px] flex flex-col gap-3">
+      <section className="flex gap-4 px-2 md:px-4 lg:px-8 flex-wrap w-[100%] justify-normal lg:justify-between">
+         <div className="py-4 self-center px-8 bg-white border border-white items-center rounded-sm shadow-lg w-[100%] lg:w-[48%] h-[290px] flex flex-col gap-3 lg:gap-0">
             <h1 className="text-lg font-semibold self-start">
                Overview
             </h1>
             <ViewProjectChart />
             <ul className="flex translate-y-[-110px] self-start items-start gap-4 flex-wrap">
                <li className="flex gap-1 items-center">
-                  <div className="w-2 h-2 bg-[#F2994A]"></div>
+                  <div className="w-2 h-2 bg-blue-700"></div>
                   <p className="text-[10px] font-medium tracking-wider">
                      Percentage completed
                   </p>
@@ -29,7 +31,7 @@ function ProjectDetails() {
                </li>
             </ul>
          </div>
-         <div className="p-4 bg-white border border-white rounded-sm shadow-lg w-[100%] lg:w-[600px] flex flex-col gap-3">
+         <div className="p-4 bg-white border border-white rounded-sm shadow-lg w-[100%] lg:w-[48%] flex flex-col gap-3 lg:gap-0">
             <h1 className="text-lg font-semibold">
                Project Details
             </h1>
@@ -44,10 +46,10 @@ function ProjectDetails() {
                </div>
                <div>
                   <h2 className="text-xs font-semibold tracking-wider">
-                     {ProjectDetailsSelector[4].name}
+                     {ProjectDetailsSelector?.projectDetails.name}
                   </h2>
                   <h2 className="text-xs font-semibold tracking-wider">
-                  {ProjectDetailsSelector[4].manager}
+                  {ProjectDetailsSelector?.projectDetails.manager}
                   </h2>
                </div>
             </div>
@@ -57,7 +59,7 @@ function ProjectDetails() {
                      Milestones
                   </h2>
                   {
-                     ProjectDetailsSelector[4].milestones.map(item => (
+                     ProjectDetailsSelector?.projectDetails.milestones.map(item => (
                         <li className="font-medium text-xs" key={item}>
                            {item}
                         </li>
@@ -69,7 +71,7 @@ function ProjectDetails() {
                      Key Details
                   </h2>
                   {
-                     ProjectDetailsSelector[4].keyDetails.map(item => (
+                     ProjectDetailsSelector?.projectDetails.keyDetails.map(item => (
                         <li className="font-medium text-xs" key={item}>
                            {item}
                         </li>
