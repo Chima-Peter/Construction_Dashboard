@@ -15,11 +15,9 @@ function Budget() {
          <ul className="flex flex-col gap-1 md:px-4">
                {
                   budget[2].resources.map((item, index) => (
-                     <div className='flex gap-2 items-center'>
+                     <div className='flex gap-2 items-center'  key={item.name}>
                            <div className='w-2 h-2' style={{ backgroundColor: COLORS[index % COLORS.length] }} ></div>
-                           <li 
-                              className="font-medium text-xs" 
-                              key={item.name}>
+                           <li className="font-medium text-xs">
                               {item.name}: {budget[2].quantity}{numberWithCommas(item.units)}
                            </li>
                      </div>

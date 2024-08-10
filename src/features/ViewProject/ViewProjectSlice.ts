@@ -209,3 +209,11 @@ export const selectAllResources = createSelector(
 export const selectAllBudgets = createSelector(
    (state: RootState) => state.view, (view) => view.map(project => project.budget)
 )
+
+export const selectCompleteProjects = createSelector(
+   (state: RootState) => state.view, (view) => view.filter(project => project.status === 'completed')
+)
+
+export const selectWorkingProjects = createSelector(
+   (state: RootState) => state.view, (view) => view.filter(project => project.status === 'in progress')
+)

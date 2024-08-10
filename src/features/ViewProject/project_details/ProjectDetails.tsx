@@ -14,7 +14,7 @@ function ProjectDetails() {
                Overview
             </h1>
             <ViewProjectChart />
-            <ul className="flex translate-y-[-110px] self-start flex-col items-start gap-1">
+            <ul className="flex translate-y-[-110px] self-start items-start gap-4 flex-wrap">
                <li className="flex gap-1 items-center">
                   <div className="w-2 h-2 bg-[#F2994A]"></div>
                   <p className="text-[10px] font-medium tracking-wider">
