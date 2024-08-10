@@ -1,7 +1,9 @@
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from "recharts";
 import { useAppSelector } from "../../../app/hooks";
-import { selectAllBudgets } from "../ViewProjectSlice";
+import { selectProjectById } from "../ViewProjectSlice";
 import numberWithCommas from "../../../utils/numberWithCommas";
+import { useContext } from "react";
+import { IdContext } from "../ViewProject";
 
 
 const COLORS = ['blue', 'green', 'orange', 'purple', 'red', '#8D99AE', '#D4A5A5'];
@@ -29,7 +31,8 @@ const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, per
 
 
 const BudgetChart = () => {
-   const budget = useAppSelector((state) => selectAllBudgets(state))
+   const id = useContext(IdContext)
+   const budget = useAppSelector((state) => selectProjectById(state, id))
 
 
    function CustomTooltip({ payload, active }: any) {
@@ -37,7 +40,7 @@ const BudgetChart = () => {
          return (
             <div className="bg-white w-[100%] p-2 rounded-sm shadow-lg">
             <p className="text-xs text-inherit font-medium">
-                  {`${payload[0].payload.name} : ${budget[2].quantity}${numberWithCommas(payload[0].value)}`}
+                  {`${payload[0].payload.name} : ${budget?.budget.quantity}${numberWithCommas(payload[0].value)}`}
                </p>
             </div>
          );
@@ -48,7 +51,7 @@ const BudgetChart = () => {
       <ResponsiveContainer width="100%" height={200}>
          <PieChart>
             <Pie
-               data={budget[2].resources}
+               data={budget?.budget.resources}
                labelLine={false}
                label={renderCustomizedLabel}
                outerRadius={100}
@@ -57,7 +60,7 @@ const BudgetChart = () => {
                fill="#F2994A"
                dataKey="units"
             >
-               {budget[2].resources.map((entry, index) => (
+               {budget?.budget.resources.map((entry, index) => (
                <Cell key={`cell-${index}-${entry}`} fill={COLORS[index % COLORS.length]} />
                ))}
             </Pie>

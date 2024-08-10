@@ -3,7 +3,7 @@ import Budget from "./budget/Budget"
 import ProjectDetails from "./project_details/ProjectDetails"
 import Resources from "./resources/Resources"
 import { useAppSelector } from "../../app/hooks"
-import { selectCompleteProjects, selectWorkingProjects } from "./ViewProjectSlice"
+import { selectAllProjects, selectCompleteProjects, selectWorkingProjects } from "./ViewProjectSlice"
 import Footer from "../../utils/footer"
 import DesktopNav from "../../utils/DesktopNav"
 import MediaQuery from "react-responsive"
@@ -19,7 +19,7 @@ function ViewProjects() {
    const checkRefs = useRef<(HTMLInputElement | null)[]>([])
 
    // get all projects; complete or not
-   const allProjects = useAppSelector((state) => state.view)
+   const allProjects = useAppSelector((state) => selectAllProjects(state))
 
    // get only complete projects
    const completeProjects = useAppSelector((state) => selectCompleteProjects(state));
@@ -27,7 +27,7 @@ function ViewProjects() {
    // get only working projects
    const workingProjects = useAppSelector((state) => selectWorkingProjects(state));
 
-   // set initial state to with all projects before change starts
+   // set initial state to all projects before selection starts
    const [projects, setProjects] = useState(allProjects)
 
    // state to hide the project display till user chooses a project

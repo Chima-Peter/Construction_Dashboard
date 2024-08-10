@@ -204,18 +204,6 @@ const ViewProjectSlice = createSlice({
 // export slice to be used in store
 export default ViewProjectSlice.reducer
 
-export const selectAllProjectDetails = createSelector(
-   (state: RootState) => state.view, (view) => view.map(project => project.projectDetails)
-)
-
-export const selectAllResources = createSelector(
-   (state: RootState) => state.view, (view) => view.map(project => project.resources)
-)
-
-export const selectAllBudgets = createSelector(
-   (state: RootState) => state.view, (view) => view.map(project => project.budget)
-)
-
 export const selectCompleteProjects = createSelector(
    (state: RootState) => state.view, (view) => view.filter(project => project.status === 'completed')
 )
