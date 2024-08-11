@@ -66,9 +66,31 @@ function ViewProjects() {
 
    const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
       if (event.target.value !== '') {
-         let temp = allProjects.filter((project:any) => (project.projectDetails.name.toLowerCase()).startsWith((event.target.value).toLowerCase()))
-         if (temp.length < 1) 
-            temp = allProjects.filter((project:any) => (project.projectDetails.name.toLowerCase()).includes((event.target.value).toLowerCase()))
+         // filter out names that start with or include project names then sort them based on starts with first
+         const temp = allProjects
+            .filter((project: any) => {
+               const projectName = project.projectDetails.name.toLowerCase();
+               return projectName.startsWith(event.target.value) || projectName.includes(event.target.value);
+            })
+            .sort((a: any, b: any) => {
+               const nameA = a.projectDetails.name.toLowerCase();
+               const nameB = b.projectDetails.name.toLowerCase();
+
+               // If both names start with the search term, maintain their order
+               if (nameA.startsWith(event.target.value) && nameB.startsWith(event.target.value)) {
+                  return 0;
+               }
+               // If only nameA starts with the search term, it should come first
+               if (nameA.startsWith(event.target.value)) {
+                  return -1;
+               }
+               // If only nameB starts with the search term, it should come first
+               if (nameB.startsWith(event.target.value)) {
+                  return 1;
+               }
+               // Otherwise, maintain their order (this part is optional)
+               return 0;
+            });
          setSearchResult(temp)
          setSearch(true)
       }
