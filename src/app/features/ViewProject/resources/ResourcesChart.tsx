@@ -1,9 +1,8 @@
 import { BarChart, Bar, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, XAxis } from 'recharts';
-import { useAppSelector } from '../../../app/hooks';
 import { selectProjectById } from '../ViewProjectSlice';
 import { useContext } from 'react';
-import { IdContext } from '../ViewProject';
-
+import { IdContext } from '../page';
+import { useAppSelector } from "../../../redux/hooks" 
 
 const renderCustomBarLabel = ({ x, y, width, value }: any) => {
   return <text x={x + width / 2} y={y} fill="#666" textAnchor="middle" dy={-6} className='text-xs text-[#2A3A5F]'>{`${value}`}</text>;

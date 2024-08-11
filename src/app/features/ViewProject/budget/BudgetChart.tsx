@@ -1,10 +1,9 @@
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from "recharts";
-import { useAppSelector } from "../../../app/hooks";
 import { selectProjectById } from "../ViewProjectSlice";
-import numberWithCommas from "../../../utils/numberWithCommas";
 import { useContext } from "react";
-import { IdContext } from "../ViewProject";
-
+import { IdContext } from "../page";
+import { useAppSelector } from "../../../redux/hooks" 
+import numberWithCommas from "../../../utils/numberWithCommas"
 
 const COLORS = ['blue', 'green', 'orange', 'purple', 'red', '#8D99AE', '#D4A5A5'];
 
@@ -60,7 +59,7 @@ const BudgetChart = () => {
                fill="#F2994A"
                dataKey="units"
             >
-               {budget?.budget.resources.map((entry, index) => (
+               {budget?.budget.resources.map((entry:any, index:any) => (
                <Cell key={`cell-${index}-${entry}`} fill={COLORS[index % COLORS.length]} />
                ))}
             </Pie>

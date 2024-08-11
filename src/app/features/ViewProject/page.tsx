@@ -2,8 +2,8 @@ import { createContext, useRef, useState } from "react"
 import Budget from "./budget/Budget"
 import ProjectDetails from "./project_details/ProjectDetails"
 import Resources from "./resources/Resources"
-import { useAppSelector } from "../../app/hooks"
 import { selectAllProjects, selectCompleteProjects, selectWorkingProjects, ViewProjectProps } from "./ViewProjectSlice"
+import { useAppSelector } from "../../redux/hooks"
 import Footer from "../../utils/footer"
 import DesktopNav from "../../utils/DesktopNav"
 import MediaQuery from "react-responsive"
@@ -16,6 +16,7 @@ function ViewProjects() {
 
    const [id, setId] = useState('')
    const inputRef = useRef<HTMLInputElement |null>(null)
+   const selectRef = useRef<HTMLSelectElement |null>(null)
    const [search, setSearch] = useState(false)
    const [searchResult, setSearchResult] = useState<ViewProjectProps[]>()
    // ref to get checkbox
@@ -57,13 +58,18 @@ function ViewProjects() {
       if (event.target.value !== '') {
          setId(event.target.value)
          setShow(true)
+         setSearch(false)
+         if (inputRef.current) inputRef.current.value = ''
       }
       else setShow(false)
    }
 
    const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
       if (event.target.value !== '') {
-         setSearchResult(allProjects.filter(project => (project.projectDetails.name.toLowerCase()).startsWith((event.target.value).toLowerCase())))
+         let temp = allProjects.filter((project:any) => (project.projectDetails.name.toLowerCase()).startsWith((event.target.value).toLowerCase()))
+         if (temp.length < 1) 
+            temp = allProjects.filter((project:any) => (project.projectDetails.name.toLowerCase()).includes((event.target.value).toLowerCase()))
+         setSearchResult(temp)
          setSearch(true)
       }
       else setSearch(false)
@@ -74,7 +80,10 @@ function ViewProjects() {
       setShow(true)
       setSearch(false)
       if (inputRef.current) inputRef.current.value = name
+      if (selectRef.current) selectRef.current.value = ''
    }
+
+   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => event.preventDefault()
 
    return (
       <main className="bg-white min-h-[100vh] flex flex-col gap-6 font-main">
@@ -84,14 +93,14 @@ function ViewProjects() {
          <MediaQuery minWidth={787}>
             <DesktopNav />
          </MediaQuery>
-         <form className="bg-white w-[100%] pb-4 shadow-lg flex gap-6 lg:gap-0 justify-normal md:justify-between flex-wrap px-4" >
+         <form className="bg-white w-[100%] pb-4 shadow-lg flex gap-6 lg:gap-0 justify-normal md:justify-between flex-wrap px-4" onSubmit={handleSubmit}>
             <div className="flex gap-4 flex-wrap">
-               <select onChange={handleOption} name="project" id="project" className="appearance-none p-2 border bg-white text-sm font-main tracking-tight text-gray-500 border-gray-200 outline-none focus:shadow-lg rounded-md w-[100%] md:w-fit">
+               <select ref={selectRef} onChange={handleOption} name="project" id="project" className="appearance-none p-2 border bg-white text-sm font-main tracking-tight text-gray-500 border-gray-200 outline-none focus:shadow-lg rounded-md w-[100%] md:w-fit">
                   <option value="">
                      Select project
                   </option>
                   {
-                     projects.map(project => (
+                     projects.map((project:any) => (
                         <option value={project.id} key={project.projectDetails.name}>
                            {project.projectDetails.name}
                         </option>

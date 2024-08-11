@@ -1,9 +1,9 @@
-import { useAppSelector } from '../../../app/hooks'
+import { useAppSelector } from '../../../redux/hooks'
 import { selectProjectById } from '../ViewProjectSlice'
 import BudgetChart from './BudgetChart'
 import numberWithCommas from '../../../utils/numberWithCommas'
 import { useContext } from 'react'
-import { IdContext } from '../ViewProject'
+import { IdContext } from '../page'
 
 function Budget() {
    const id = useContext(IdContext)
@@ -21,7 +21,7 @@ function Budget() {
             </div>
             <ul className="flex flex-col gap-1 md:px-4">
                {
-                  budget?.budget.resources.map((item, index) => (
+                  budget?.budget.resources.map((item:any, index:any) => (
                      <div className='flex gap-2 items-center'  key={item.name}>
                            <div className='w-2 h-2' style={{ backgroundColor: COLORS[index % COLORS.length] }} ></div>
                            <li className="font-medium text-xs">

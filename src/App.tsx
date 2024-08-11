@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom"
-import ErrorPage from "./features/errorpage"
-import ViewProjects from "./features/ViewProject/ViewProject"
+import ErrorPage from "./app/features/errorpage"
+import ViewProjects from "./app/features/ViewProject/page"
 
 export function App() {
   return (

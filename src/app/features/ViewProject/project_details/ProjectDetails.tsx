@@ -1,8 +1,8 @@
 import { useContext } from "react"
-import { useAppSelector } from "../../../app/hooks"
+import { useAppSelector } from "../../../redux/hooks" 
 import { selectProjectById } from "../ViewProjectSlice"
 import ViewProjectChart from "./ViewProjectChart"
-import { IdContext } from "../ViewProject"
+import { IdContext } from "../page"
 
 
 function ProjectDetails() {
@@ -51,7 +51,7 @@ function ProjectDetails() {
                   </p>
                </div>
                <div  className="flex flex-col gap-1">
-                  <h2 className="text-xs font-semibold tracking-wider">
+                  <h2 className="text-xs font-semibold tracking-wider uppercase">
                      {ProjectDetailsSelector?.projectDetails.name}
                   </h2>
                   <h2 className="text-xs font-semibold tracking-wider">
@@ -71,7 +71,7 @@ function ProjectDetails() {
                      Milestones
                   </h2>
                   {
-                     ProjectDetailsSelector?.projectDetails.milestones.map(item => (
+                     ProjectDetailsSelector?.projectDetails.milestones.map((item:any) => (
                         <li className="font-medium text-xs" key={item}>
                            {item}
                         </li>
@@ -83,7 +83,7 @@ function ProjectDetails() {
                      Key Details
                   </h2>
                   {
-                     ProjectDetailsSelector?.projectDetails.keyDetails.map(item => (
+                     ProjectDetailsSelector?.projectDetails.keyDetails.map((item:any) => (
                         <li className="font-medium text-xs" key={item}>
                            {item}
                         </li>

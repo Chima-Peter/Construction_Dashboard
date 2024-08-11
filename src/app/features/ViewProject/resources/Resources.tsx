@@ -1,9 +1,9 @@
 import { useContext } from "react"
-import { useAppSelector } from "../../../app/hooks"
+import { useAppSelector } from "../../../redux/hooks" 
 import numberWithCommas from "../../../utils/numberWithCommas"
 import { selectProjectById } from "../ViewProjectSlice"
 import ResourcesChart from "./ResourcesChart"
-import { IdContext } from "../ViewProject"
+import { IdContext } from "../page"
 
 function Resources() {
    const id = useContext(IdContext)
@@ -17,7 +17,7 @@ function Resources() {
          <ResourcesChart />
          <ul className="flex flex-col gap-1 list-inside list-disc md:px-4">
             {
-               resources?.resources.map(item => (
+               resources?.resources.map((item:any) => (
                   <li className="font-medium text-xs" key={item.name}>
                      {item.name}: {numberWithCommas(item.units)} {item.quantity}
                   </li>

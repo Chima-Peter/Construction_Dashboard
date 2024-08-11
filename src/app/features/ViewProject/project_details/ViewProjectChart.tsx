@@ -1,8 +1,8 @@
 import { useContext, useState } from 'react';
 import { PieChart, Pie, Sector, Cell } from 'recharts';
-import { useAppSelector } from '../../../app/hooks';
+import { useAppSelector } from "../../../redux/hooks" 
 import { selectProjectById } from '../ViewProjectSlice';
-import { IdContext } from '../ViewProject';
+import { IdContext } from '../page';
 
 // Define colors for the pie chart slices
 const COLORS = ['blue', 'lightgray'];
@@ -78,7 +78,7 @@ export default function ViewProjectChart() {
           onPieEnter();
         }}
       >
-        {data.map((entry, index) => (
+        {data.map((entry:any, index:any) => (
           <Cell key={`cell-${entry}`} fill={COLORS[index % COLORS.length]} />
         ))}
       </Pie>

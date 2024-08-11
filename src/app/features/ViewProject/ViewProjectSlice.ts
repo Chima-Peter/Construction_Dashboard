@@ -1,5 +1,5 @@
 import { createSlice, createSelector, nanoid } from "@reduxjs/toolkit";
-import { RootState } from "../../app/store";
+import { RootState } from "../../redux/store";
 
 export interface ProjectDetails {
    name: string,
