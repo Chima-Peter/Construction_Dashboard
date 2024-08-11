@@ -143,7 +143,7 @@ function ViewProjects() {
             <div className="w-[100%] lg:w-fit relative">
                <input type="text" ref={inputRef} onChange={handleSearch} autoComplete="off" name="search" id="search" placeholder="Search for project by name" autoFocus className="px-4 py-2 border border-gray-300 rounded-md w-[100%] lg:w-[400px] outline-none focus:shadow-md placeholder:text-xs placeholder:uppercase capitalize text-[16px]" />
                {
-                  search && <div className="flex flex-col px-2 rounded-md shadow-md border-b border-b-gray-500 mt-2 w-[100%] lg:w-[400px] bg-black text-white pb-0 absolute">
+                  search && <div className="flex flex-col px-2 rounded-md shadow-md border-b border-b-gray-500 mt-2 w-[100%] lg:w-[400px] bg-black text-white pb-0 absolute z-50">
                      {
                         (searchResult && (searchResult.length > 0)) ? searchResult?.map(search => (
                               <button onClick={() => handleClick(search.projectDetails.name, search.id)} key={search.projectDetails.name} name={search.id} type="button" className="text-xs border-t border-t-gray-500 py-2 outline-none">
