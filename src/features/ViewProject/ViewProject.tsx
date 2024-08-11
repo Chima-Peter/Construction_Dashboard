@@ -3,7 +3,7 @@ import Budget from "./budget/Budget"
 import ProjectDetails from "./project_details/ProjectDetails"
 import Resources from "./resources/Resources"
 import { useAppSelector } from "../../app/hooks"
-import { selectAllProjects, selectCompleteProjects, selectWorkingProjects } from "./ViewProjectSlice"
+import { selectAllProjects, selectCompleteProjects, selectWorkingProjects, ViewProjectProps } from "./ViewProjectSlice"
 import Footer from "../../utils/footer"
 import DesktopNav from "../../utils/DesktopNav"
 import MediaQuery from "react-responsive"
@@ -15,6 +15,8 @@ export const IdContext = createContext('')
 function ViewProjects() {
 
    const [id, setId] = useState('')
+   const [search, setSearch] = useState(false)
+   const [searchResult, setSearchResult] = useState<ViewProjectProps[]>()
    // ref to get checkbox
    const checkRefs = useRef<(HTMLInputElement | null)[]>([])
 
@@ -58,6 +60,22 @@ function ViewProjects() {
       else setShow(false)
    }
 
+   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+      if (event.target.value !== '') {
+         setSearchResult(allProjects.filter(project => (project.projectDetails.name.toLowerCase()).startsWith((event.target.value).toLowerCase())))
+         setSearch(true)
+      }
+      else setSearch(false)
+   }
+
+   const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => event.target.value = ''
+
+   const handleClick = (name:string) => {
+      setId(name)
+      setShow(true)
+      setSearch(false)
+   }
+
    return (
       <main className="bg-white min-h-[100vh] flex flex-col gap-6 font-main">
          <MediaQuery maxWidth={786}>
@@ -66,27 +84,45 @@ function ViewProjects() {
          <MediaQuery minWidth={787}>
             <DesktopNav />
          </MediaQuery>
-         <form className="bg-white w-[100%] pb-4 shadow-lg flex gap-4 flex-wrap px-4">
-            <select onChange={handleOption} name="project" id="project" className="appearance-none p-2 border bg-white text-sm font-main tracking-tight text-gray-500 border-gray-200 outline-none focus:shadow-lg shadow-md rounded-md">
-               <option value="">
-                  Select project
-               </option>
+         <form className="bg-white w-[100%] pb-4 shadow-lg flex gap-6 lg:gap-0 justify-normal md:justify-between flex-wrap px-4" >
+            <div className="flex gap-4 flex-wrap">
+               <select onChange={handleOption} name="project" id="project" className="appearance-none p-2 border bg-white text-sm font-main tracking-tight text-gray-500 border-gray-200 outline-none focus:shadow-lg rounded-md w-[100%] md:w-fit">
+                  <option value="">
+                     Select project
+                  </option>
+                  {
+                     projects.map(project => (
+                        <option value={project.id} key={project.projectDetails.name}>
+                           {project.projectDetails.name}
+                        </option>
+                     ))
+                  }
+               </select>
+               <div className="flex gap-0 md:gap-3 justify-between w-[100%] md:w-fit md:justify-normal">
+                  <label htmlFor="complete" className="text-[11px] flex items-center gap-1">
+                     <input type="checkbox" ref={(el) => (checkRefs.current[0] = el)} name="complete" id="complete" onChange= {() => handleCheckbox(0 ,1)} />
+                     Completed Projects
+                  </label>
+                  <label htmlFor="in-progress" className="text-[11px] flex items-center gap-1">
+                     <input type="checkbox" name="in-progress" id="in-progress"  ref={(el) => (checkRefs.current[1] = el)} onChange= {() => handleCheckbox(1, 0)}/>
+                     Under construction
+                  </label>
+               </div>
+            </div>
+            <div className="w-[100%] lg:w-fit relative">
+               <input type="text" onChange={handleSearch} autoComplete="off" name="search" id="search" placeholder="Search for project by name" autoFocus className="px-4 py-2 border border-gray-300 rounded-md w-[100%] lg:w-[400px] outline-none focus:shadow-md placeholder:text-xs placeholder:uppercase capitalize text-[16px]" onBlur={handleBlur} />
                {
-                  projects.map(project => (
-                     <option value={project.id} key={project.projectDetails.name}>
-                        {project.projectDetails.name}
-                     </option>
-                  ))
+                  search && <div className="flex flex-col px-2 rounded-md shadow-md border-b border-b-gray-500 mt-2 w-[100%] lg:w-[400px] bg-black text-white pb-0 absolute">
+                     {
+                        searchResult?.map(search => (
+                           <button onClick={() => handleClick(search.id)} key={search.projectDetails.name} name={search.id} type="button" className="text-xs border-t border-t-gray-500 py-2 outline-none">
+                              {search.projectDetails.name}
+                           </button>
+                        ))
+                     }
+                  </div>
                }
-            </select>
-            <label htmlFor="complete" className="text-[11px] flex items-center gap-1">
-               <input type="checkbox" ref={(el) => (checkRefs.current[0] = el)} name="complete" id="complete" onChange= {() => handleCheckbox(0 ,1)} />
-               Completed Projects
-            </label>
-            <label htmlFor="in-progress" className="text-[11px] flex items-center gap-1">
-               <input type="checkbox" name="in-progress" id="in-progress"  ref={(el) => (checkRefs.current[1] = el)} onChange= {() => handleCheckbox(1, 0)}/>
-               Under construction
-            </label>
+            </div>
          </form>
          {
             show ? <IdContext.Provider value={id}>

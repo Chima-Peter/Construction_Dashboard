@@ -11,7 +11,7 @@ function ProjectDetails() {
 
    return (
       <section className="flex gap-4 px-2 md:px-4 lg:px-8 flex-wrap w-[100%] justify-normal lg:justify-between">
-         <div className="py-4 self-center px-8 bg-white border border-white items-center rounded-sm shadow-lg w-[100%] lg:w-[48%] h-[290px] flex flex-col gap-3 lg:gap-0">
+         <div className="py-4 self-center px-8 bg-white border border-gray-200 items-center rounded-sm shadow-lg w-[100%] lg:w-[48%] h-[290px] lg:h-full flex flex-col gap-3 lg:gap-0">
             <h1 className="text-lg font-semibold self-start">
                Overview
             </h1>
@@ -31,26 +31,38 @@ function ProjectDetails() {
                </li>
             </ul>
          </div>
-         <div className="p-4 bg-white border border-white rounded-sm shadow-lg w-[100%] lg:w-[48%] flex flex-col gap-3 lg:gap-0">
+         <div className="p-4 bg-white border border-gray-200 rounded-sm shadow-lg w-[100%] lg:w-[48%] flex flex-col gap-3 ">
             <h1 className="text-lg font-semibold">
                Project Details
             </h1>
             <div className="flex gap-2 mb-4">
-               <div>
+               <div className="flex flex-col gap-1">
                   <h2 className="text-xs font-light">
                      Project Name:
                   </h2>
                   <h2 className="text-xs font-light">
                      Project Manager:
                   </h2>
+                  <p className="text-xs font-light">
+                     Start Date:
+                  </p>
+                  <p className="text-xs font-light">
+                     Proposed Due date:
+                  </p>
                </div>
-               <div>
+               <div  className="flex flex-col gap-1">
                   <h2 className="text-xs font-semibold tracking-wider">
                      {ProjectDetailsSelector?.projectDetails.name}
                   </h2>
                   <h2 className="text-xs font-semibold tracking-wider">
                   {ProjectDetailsSelector?.projectDetails.manager}
                   </h2>
+                  <p className="text-xs font-medium tracking-tight italic">
+                     {ProjectDetailsSelector?.projectDetails.startDate}
+                  </p>
+                  <p className="text-xs font-medium tracking-tight italic">
+                  {ProjectDetailsSelector?.projectDetails.endDate}
+                  </p>
                </div>
             </div>
             <div className="flex gap-6 lg:gap-0 flex-wrap justify-normal lg:justify-between">

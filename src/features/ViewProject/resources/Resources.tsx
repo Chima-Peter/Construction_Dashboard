@@ -10,7 +10,7 @@ function Resources() {
    let resources = useAppSelector(state => selectProjectById(state, id))
 
    return (
-      <div className="w-[100%] lg:w-[48%] py-8 px-4 bg-white rounded-sm border border-white shadow-lg flex flex-wrap gap-4 lg:gap-0">
+      <div className="w-[100%] lg:w-[48%] py-8 px-4 bg-white rounded-sm border border-gray-200 shadow-lg flex flex-wrap gap-4 lg:gap-0">
          <h2 className="text-lg font-semibold self-start mb-4  md:px-4">
             Resources Allocated
          </h2>

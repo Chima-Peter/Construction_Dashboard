@@ -11,7 +11,7 @@ function Budget() {
    const COLORS = ['blue', 'green', 'orange', 'purple', 'red', '#8D99AE', '#D4A5A5'];
 
    return (
-      <div className="w-[100%] lg:w-[48%] flex-col py-4 px-4 bg-white rounded-sm border border-white shadow-lg flex gap-4 lg:gap-0">
+      <div className="w-[100%] lg:w-[48%] flex-col py-4 px-4 bg-white rounded-sm border border-gray-200 shadow-lg flex gap-4 lg:gap-0">
          <h2 className="text-lg font-semibold self-start mb-2  md:px-4">
             Budgeting
          </h2>

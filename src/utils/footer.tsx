@@ -3,8 +3,8 @@ import { FaFacebookF, FaTwitter, FaInstagram } from "react-icons/fa6";
 
 function Footer() {
    return (
-      <footer className="flex flex-col gap-3 px-4 md:px-10 bg-white flex-wrap lg:flex-nowrap font-main w-[100%] pb-8">
-         <div className="flex gap-6 md:justify-between border-b  flex-wrap lg:flex-nowrap border-b-gray-300 w-[100%] pb-8">
+      <footer className="flex flex-col gap-3 px-4 md:px-10 bg-white border-t border-t-gray-200 lg:mt-5 flex-wrap lg:flex-nowrap font-main w-[100%] pb-8">
+         <div className="flex gap-6 md:justify-between border-b  flex-wrap lg:flex-nowrap border-b-gray-300 w-[100%] pb-6">
             <div className="flex flex-col items-start pt-4">
             <h5 className="text-2xl font-semibold px-2">
                Seamless Constructions
