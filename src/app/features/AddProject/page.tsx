@@ -5,19 +5,18 @@ import DesktopNav from "../../utils/DesktopNav"
 //import { useAppDispatch } from "../../redux/hooks"
 //import { addProject } from "./AddProjectSlice"
 import AddProjectDetails from "./projectDetails/AddProjectDetails"
-import { createContext, SetStateAction, useContext, useRef, useState } from "react"
+import { createContext, SetStateAction, useContext, useState } from "react"
 import { ProjectDetails, ResourceProps } from "../../redux/initialState"
-import AddResources from "./resources/resources"
+import AddResources from "./resources/AddResources"
   
 
 interface ContextProps {
    projectDetails: ProjectDetails,
    setProjectDetails: React.Dispatch<React.SetStateAction<ProjectDetails>>,
-   resource: ResourceProps,
-   setResource: React.Dispatch<SetStateAction<ResourceProps>>,
+   resource: ResourceProps[],
+   setResource: React.Dispatch<SetStateAction<ResourceProps[]>>,
    status: string,
    setStatus: React.Dispatch<React.SetStateAction<string>>,
-   formRef: React.MutableRefObject<(HTMLInputElement | null)[]>
 }
 
 
@@ -26,7 +25,6 @@ const AddContext =  createContext<ContextProps | undefined>(undefined)
 function AddProjects() {
    //const dispatch = useAppDispatch()
    // use ref to validate form
-   const formRef = useRef<(HTMLInputElement | null)[]>([])
    const [projectDetails, setProjectDetails] = useState<ProjectDetails>({
       name: '',
       manager: '',
@@ -36,12 +34,15 @@ function AddProjects() {
       keyDetails: [],
       milestones: []
     });
-    const [resource, setResource] = useState<ResourceProps>({
+
+    const [resource, setResource] = useState<ResourceProps[]>([
+      {
       name: '',
       units: 0,
       spent: 0,
       quantity: ''
-    })
+    }
+    ])
    const [status, setStatus] = useState<string>('just started')
 
    return (
@@ -53,7 +54,7 @@ function AddProjects() {
             <DesktopNav />
          </MediaQuery>
          <form className="flex flex-col gap-6 mt-20">
-            <AddContext.Provider value={{projectDetails, setProjectDetails, status, setStatus, formRef, resource, setResource}}>
+            <AddContext.Provider value={{projectDetails, setProjectDetails, status, setStatus, resource, setResource}}>
                <AddProjectDetails />
                <AddResources />
             </AddContext.Provider> 

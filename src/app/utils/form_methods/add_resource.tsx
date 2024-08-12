@@ -3,8 +3,18 @@ import { useAddContext } from "../../features/AddProject/page";
 export function useHandleTextInput() {
    const { resource, setResource } = useAddContext()
 
-   return (event: React.ChangeEvent<HTMLInputElement>) => {
-      setResource({ ...resource, [event.target.name]: event.target.value })
+   return (event: React.ChangeEvent<HTMLInputElement>, index:number) => {
+      let temp = [...resource]
+      let changeTemp = { ...temp[index] }
+      const { name, value } = event.target;
+      
+      if (name === "units" || name === "spent") {
+         changeTemp[name] = Number(value)
+      } else if (name === "name" || name === "quantity") {
+         changeTemp[name] = value
+      }
+      temp[index] = changeTemp
+      setResource(temp)
       event.target.style.border = '1px solid lightgray'
    }
  };
