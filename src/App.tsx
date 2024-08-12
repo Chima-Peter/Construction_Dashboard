@@ -8,8 +8,8 @@ export function App() {
       <BrowserRouter basename={import.meta.env.DEV ? '/' : '/Seamless/'}>
          <Routes>
             <Route path="*" element={<ErrorPage />} />
-            <Route path="/add" element={<AddProjects />} />
-            <Route path="/" element={<ViewProjects />} />
+            <Route path="/" element={<AddProjects />} />
+            <Route path="/view" element={<ViewProjects />} />
          </Routes> 
       </BrowserRouter>
   )

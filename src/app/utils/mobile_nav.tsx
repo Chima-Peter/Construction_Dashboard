@@ -1,13 +1,24 @@
 import { NavLink } from "react-router-dom"
 import { FaFacebookF, FaTwitter, FaInstagram } from "react-icons/fa6";
 import { motion } from 'framer-motion'
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { MdCancelPresentation } from "react-icons/md";
 
 function MobileNav() {
    const [icon, setIcon] = useState(true)
    const [animateState, setAnimateState] = useState('animate')
+   const [scrollNav, setScrollNav] = useState<boolean>(false)
+
+
+   useEffect(() => {
+      const scrollEffect = () => {
+         setScrollNav(window.scrollY > 0)
+      }
+      window.addEventListener('scroll', scrollEffect)
+
+      return () => window.removeEventListener('scroll', scrollEffect)
+   })
 
    const handleNavEntry = () => {
       setIcon(false)
@@ -45,7 +56,7 @@ function MobileNav() {
    // animation to show menu
 
   return (
-      <nav className="flex bg-[blue] w-[100%] flex-col gap-4 p-4 px-4">
+      <nav className={`flex bg-[blue] w-[100%] flex-col gap-4 p-4 px-4  fixed top-0 ${scrollNav ? 'shadow-lg shadow-gray-200' : ''}`}>
          <div className="w-[100%] flex justify-between items-center">
             <h1 className="text-xl font-semibold text-white">
                Seamless Construction
@@ -70,12 +81,12 @@ function MobileNav() {
                }}>
                <ul className="flex gap-6 flex-col items-start appearance-none font-main">
                   <li>
-                     <NavLink to={'/view'} className="text-xs font-[500] text-white hover:border-b-2 pb-1 border-b-white">
+                     <NavLink to={'/'} className="text-xs font-[500] text-white hover:border-b-2 pb-1 border-b-white">
                         Add Project
                      </NavLink>
                   </li>
                   <li>
-                     <NavLink to={'/'}  className="text-xs font-[500] text-white hover:border-b-2 pb-1 border-b-white">
+                     <NavLink to={'/view'}  className="text-xs font-[500] text-white hover:border-b-2 pb-1 border-b-white">
                         View Project
                      </NavLink>
                   </li>

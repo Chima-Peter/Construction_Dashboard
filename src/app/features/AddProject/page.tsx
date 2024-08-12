@@ -2,8 +2,8 @@ import MediaQuery from "react-responsive"
 import Footer from "../../utils/footer"
 import MobileNav from "../../utils/mobile_nav"
 import DesktopNav from "../../utils/DesktopNav"
-import { useAppDispatch } from "../../redux/hooks"
-import { addProject } from "./AddProjectSlice"
+//import { useAppDispatch } from "../../redux/hooks"
+//import { addProject } from "./AddProjectSlice"
 import AddProjectDetails from "./projectDetails/AddProjectDetails"
 import { createContext, SetStateAction, useContext, useRef, useState } from "react"
 import { ProjectDetails, ResourceProps } from "../../redux/initialState"
@@ -24,7 +24,7 @@ interface ContextProps {
 const AddContext =  createContext<ContextProps | undefined>(undefined)
 
 function AddProjects() {
-   const dispatch = useAppDispatch()
+   //const dispatch = useAppDispatch()
    // use ref to validate form
    const formRef = useRef<(HTMLInputElement | null)[]>([])
    const [projectDetails, setProjectDetails] = useState<ProjectDetails>({
@@ -52,7 +52,7 @@ function AddProjects() {
          <MediaQuery minWidth={787}>
             <DesktopNav />
          </MediaQuery>
-         <form className="flex flex-col gap-6">
+         <form className="flex flex-col gap-6 mt-20">
             <AddContext.Provider value={{projectDetails, setProjectDetails, status, setStatus, formRef, resource, setResource}}>
                <AddProjectDetails />
                <AddResources />

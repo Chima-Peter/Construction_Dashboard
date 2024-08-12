@@ -23,7 +23,7 @@ export const selectCompleteProjects = createSelector(
    (state: RootState) => state.view, (view) => view.filter((project:any) => project.status === 'complete')
 )
 
-export const selectWorkingProjects = createSelector(
+export const selectInProgressProjects = createSelector(
    (state: RootState) => state.view, (view) => view.filter((project:any) => project.status === 'in progress')
 )
 
@@ -46,6 +46,7 @@ export const selectNearCompletionProjects = createSelector(
 export const selectNotStartedrojects = createSelector(
    (state: RootState) => state.view, (view) => view.filter((project:any) => project.status === 'not started')
 )
+
 
 export const selectAllProjects = (state:RootState) => state.view
 
