@@ -5,7 +5,7 @@ import { IdContext } from "../page";
 import { useAppSelector } from "../../../redux/hooks" 
 import numberWithCommas from "../../../utils/numberWithCommas"
 
-const COLORS = ['blue', 'green', 'orange', 'purple', 'red', '#8D99AE', '#D4A5A5'];
+const COLORS = ['blue', 'lightgreen', 'orange', 'purple', 'red', '#8D99AE', '#D4A5A5'];
 
 const RADIAN = Math.PI / 180;
 
@@ -21,6 +21,7 @@ const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, per
          fill="white"
          textAnchor={x > cx ? "start" : "end"}
          dominantBaseline="central"
+         className="text-[11px] font-medium"
       >
          {`${(percent * 100).toFixed(0)}%`}
       </text>

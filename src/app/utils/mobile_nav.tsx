@@ -70,7 +70,7 @@ function MobileNav() {
                }}>
                <ul className="flex gap-6 flex-col items-start appearance-none font-main">
                   <li>
-                     <NavLink to={'_'} className="text-xs font-[500] text-white hover:border-b-2 pb-1 border-b-white">
+                     <NavLink to={'/view'} className="text-xs font-[500] text-white hover:border-b-2 pb-1 border-b-white">
                         Add Project
                      </NavLink>
                   </li>

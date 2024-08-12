@@ -8,7 +8,7 @@ function DesktopNav() {
          </h1>
          <ul className="flex gap-4 items-center md:mr-2 lg:mr-10">
             <li>
-               <NavLink to={'/add'} className="text-xs text-white font-medium pb-1">
+               <NavLink to={'/view'} className="text-xs text-white font-medium pb-1">
                   Add Project
                </NavLink>
             </li>

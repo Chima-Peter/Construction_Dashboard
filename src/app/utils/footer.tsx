@@ -6,7 +6,7 @@ function Footer() {
       <footer className="flex flex-col gap-3 px-4 md:px-10 bg-white border-t border-t-gray-200 lg:mt-5 flex-wrap lg:flex-nowrap font-main w-[100%] pb-8">
          <div className="flex gap-6 md:justify-between border-b  flex-wrap lg:flex-nowrap border-b-gray-300 w-[100%] pb-6">
             <div className="flex flex-col items-start pt-4">
-            <h5 className="text-2xl font-semibold px-2">
+            <h5 className="text-xl md:text-2xl font-semibold px-2">
                Seamless Constructions
             </h5>
             <p  className=" px-2 pt-2 font-[400] text-[12px]">

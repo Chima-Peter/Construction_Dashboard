@@ -31,11 +31,11 @@ function ProjectDetails() {
                </li>
             </ul>
          </div>
-         <div className="p-4 bg-white border border-gray-200 rounded-sm shadow-lg w-[100%] lg:w-[48%] flex flex-col gap-3 ">
+         <div className="p-4 bg-white border border-gray-200 rounded-sm shadow-lg w-[100%] lg:w-[48%] flex flex-col gap-3">
             <h1 className="text-lg font-semibold">
                Project Details
             </h1>
-            <div className="flex gap-2 mb-4">
+            <div className="flex gap-5 mb-4">
                <div className="flex flex-col gap-1">
                   <h2 className="text-xs font-light">
                      Project Name:
@@ -43,11 +43,14 @@ function ProjectDetails() {
                   <h2 className="text-xs font-light">
                      Project Manager:
                   </h2>
+                  <h2 className="text-xs font-light mb-2">
+                     Status:
+                  </h2>
                   <p className="text-xs font-light">
                      Start Date:
                   </p>
                   <p className="text-xs font-light">
-                     Proposed Due date:
+                     Proposed Due Date:
                   </p>
                </div>
                <div  className="flex flex-col gap-1">
@@ -57,6 +60,9 @@ function ProjectDetails() {
                   <h2 className="text-xs font-semibold tracking-wider">
                   {ProjectDetailsSelector?.projectDetails.manager}
                   </h2>
+                  <h2  className="text-xs font-medium capitalize mb-2">
+                  {ProjectDetailsSelector?.status}
+                  </h2>
                   <p className="text-xs font-medium tracking-tight italic">
                      {ProjectDetailsSelector?.projectDetails.startDate}
                   </p>
@@ -65,8 +71,8 @@ function ProjectDetails() {
                   </p>
                </div>
             </div>
-            <div className="flex gap-6 lg:gap-0 flex-wrap justify-normal lg:justify-between">
-               <ul className="flex flex-col gap-1 list-inside list-disc w-[100%] md:w-[48%] md:pr-[2%] md:border-r md:border-r-gray-400">
+            <div className="flex gap-6 lg:gap-0 flex-wrap md:flex-nowrap justify-normal md:justify-between">
+               <ul className="flex flex-col gap-1 list-inside list-disc w-[100%] md:w-[48%]">
                   <h2 className="text-[lg] font-semibold self-start border-b p-1 border-b-gray-400 w-[100%]">
                      Milestones
                   </h2>
@@ -78,7 +84,9 @@ function ProjectDetails() {
                      ))
                   }
                </ul>
-               <ul className="flex flex-col gap-1 list-inside list-disc  w-[100%] md:w-[48%]">
+               <div className=" md:border-r md:border-r-gray-400">
+               </div>
+               <ul className="flex flex-col gap-1 list-inside list-disc w-[100%] md:w-[48%]">
                   <h2 className="text-[lg] font-semibold self-start border-b p-1 border-b-gray-400 w-[100%]">
                      Key Details
                   </h2>

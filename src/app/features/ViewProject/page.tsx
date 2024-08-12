@@ -2,12 +2,14 @@ import { createContext, useRef, useState } from "react"
 import Budget from "./budget/Budget"
 import ProjectDetails from "./project_details/ProjectDetails"
 import Resources from "./resources/Resources"
-import { selectAllProjects, selectCompleteProjects, selectWorkingProjects, ViewProjectProps } from "./ViewProjectSlice"
+import { selectAllProjects, selectCompleteProjects, selectWorkingProjects } from "./ViewProjectSlice"
+
 import { useAppSelector } from "../../redux/hooks"
 import Footer from "../../utils/footer"
 import DesktopNav from "../../utils/DesktopNav"
 import MediaQuery from "react-responsive"
 import MobileNav from "../../utils/mobile_nav"
+import { ProjectProps } from "../../redux/initialState"
 
 
 export const IdContext = createContext('')
@@ -18,7 +20,7 @@ function ViewProjects() {
    const inputRef = useRef<HTMLInputElement |null>(null)
    const selectRef = useRef<HTMLSelectElement |null>(null)
    const [search, setSearch] = useState(false)
-   const [searchResult, setSearchResult] = useState<ViewProjectProps[]>()
+   const [searchResult, setSearchResult] = useState<ProjectProps[]>()
    // ref to get checkbox
    const checkRefs = useRef<(HTMLInputElement | null)[]>([])
 
@@ -65,7 +67,7 @@ function ViewProjects() {
    }
 
    const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
-      if (event.target.value !== '') {
+      if (event.target.value.length > 0) {
          // filter out names that start with or include project names then sort them based on starts with first
          const temp = allProjects
             .filter((project: any) => {
@@ -143,10 +145,10 @@ function ViewProjects() {
             <div className="w-[100%] lg:w-fit relative">
                <input type="text" ref={inputRef} onChange={handleSearch} autoComplete="off" name="search" id="search" placeholder="Search for project by name" autoFocus className="px-4 py-2 border border-gray-300 rounded-md w-[100%] lg:w-[400px] outline-none focus:shadow-md placeholder:text-xs placeholder:uppercase capitalize text-[16px]" />
                {
-                  search && <div className="flex flex-col px-2 rounded-md shadow-md border-b border-b-gray-500 mt-2 w-[100%] lg:w-[400px] bg-black text-white pb-0 absolute z-50">
+                  search && <div className="customScroll flex flex-col px-2 rounded-md shadow-md border-b border-b-gray-500 mt-2 w-[100%] lg:w-[400px] bg-black text-white pb-0 absolute z-50 h-[200px] overflow-y-auto">
                      {
                         (searchResult && (searchResult.length > 0)) ? searchResult?.map(search => (
-                              <button onClick={() => handleClick(search.projectDetails.name, search.id)} key={search.projectDetails.name} name={search.id} type="button" className="text-xs border-t border-t-gray-500 py-2 outline-none">
+                              <button onClick={() => handleClick(search.projectDetails.name, search.id)} key={search.id} name={search.id} type="button" className="text-xs border-t border-t-gray-500 py-2 outline-none">
                                  {search.projectDetails.name}
                               </button>
                            ))
