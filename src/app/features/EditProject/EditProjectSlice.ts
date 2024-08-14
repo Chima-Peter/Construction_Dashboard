@@ -8,6 +8,7 @@ const EditSlice = createSlice({
    initialState: InitialState,
    reducers: {
       editProject: (state, action: PayloadAction<ProjectProps>) => {
+         console.log('save slice edit')
          state.map((item) => {
             if (item.id === action.payload.id)
                item = action.payload

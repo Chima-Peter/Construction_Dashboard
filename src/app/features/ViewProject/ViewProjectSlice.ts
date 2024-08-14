@@ -2,6 +2,7 @@ import { createSlice, createSelector, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../../redux/store";
 import { InitialState, ProjectProps } from "../../redux/initialState";
 import { addProject } from "../AddProject/AddProjectSlice";
+import { editProject } from "../EditProject/EditProjectSlice";
 
 
 const ViewProjectSlice = createSlice({
@@ -12,6 +13,13 @@ const ViewProjectSlice = createSlice({
       builder.addCase(addProject, (state, action: PayloadAction<ProjectProps>) => {
          console.log('adding project to view slice')
          state.push(action.payload)
+      });
+      builder.addCase(editProject, (state, action: PayloadAction<ProjectProps>) => {
+         console.log('add change to project in view slice')
+         state.map((item) => {
+            if (item.id === action.payload.id)
+               item = action.payload
+         })
       })
    }
 })
