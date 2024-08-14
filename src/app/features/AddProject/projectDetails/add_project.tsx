@@ -1,6 +1,6 @@
-import { useAddContext } from "../../features/AddProject/page";
+import { useAddContext } from "../page";
 
-export function useHandleTextInput() {
+export function useHandleInput() {
    // Can use the addContext because we're calling the fucntional component inside a descendant of the context
    const { projectDetails, setProjectDetails } = useAddContext()
 

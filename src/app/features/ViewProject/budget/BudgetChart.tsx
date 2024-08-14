@@ -46,12 +46,17 @@ const BudgetChart = () => {
          );
       }
       }
+      const data: any[] | undefined = []
+
+      budget?.budget.resources.map((item) => {
+         data.push({ 'name': item.name, 'units': Number(item.units) })
+      })
  
     return (
       <ResponsiveContainer width="100%" height={200}>
          <PieChart>
             <Pie
-               data={budget?.budget.resources}
+               data={data}
                labelLine={false}
                label={renderCustomizedLabel}
                outerRadius={100}

@@ -1,15 +1,16 @@
-import { useAddContext } from "../../features/AddProject/page";
+import { useAddContext } from "../page";
 
-export function useHandleTextInput() {
+export function useHandleInput() {
    const { resource, setResource } = useAddContext()
+   const regex = /^[0-9]*$/
 
    return (event: React.ChangeEvent<HTMLInputElement>, index:number) => {
       let temp = [...resource]
       let changeTemp = { ...temp[index] }
-      const { name, value } = event.target;
+      let { name, value } = event.target;
       
       if (name === "units" || name === "spent") {
-         changeTemp[name] = Number(value)
+         if (regex.test(value)) changeTemp[name] = value
       } else if (name === "name" || name === "quantity") {
          changeTemp[name] = value
       }

@@ -32,11 +32,17 @@ function CustomTooltip({ payload, active }: any) {
 
 export default function ResourcesChart() {
    const id = useContext(IdContext)
-  let resources = useAppSelector(state => selectProjectById(state, id));
+  let resource = useAppSelector(state => selectProjectById(state, id));
+
+  const data: any[] | undefined = []
+
+   resource?.resources.map((item) => {
+      data.push({ 'name': item.name, 'units': Number(item.units), 'spent': Number(item.spent), 'quantity': item.quantity })
+   })
 
   return (
     <ResponsiveContainer width="100%" height={200}>
-      <BarChart data={resources?.resources} barGap={5}>
+      <BarChart data={data} barGap={5}>
         <YAxis className='text-xs text-green-700' />
         <XAxis className='text-xs text-green-700' />
         <Tooltip content={<CustomTooltip />} />

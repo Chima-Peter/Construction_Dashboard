@@ -5,9 +5,12 @@ import DesktopNav from "../../utils/DesktopNav"
 //import { useAppDispatch } from "../../redux/hooks"
 //import { addProject } from "./AddProjectSlice"
 import AddProjectDetails from "./projectDetails/AddProjectDetails"
-import { createContext, SetStateAction, useContext, useState } from "react"
-import { ProjectDetails, ResourceProps } from "../../redux/initialState"
+import React, { createContext, SetStateAction, useContext, useState } from "react"
+import { BudgetProps, ProjectDetails, ResourceProps } from "../../redux/initialState"
 import AddResources from "./resources/AddResources"
+import AddBudget from "./budget/AddBudget"
+import Submit from "./submit/SubmitButton"
+import handleSubmit from "./submit/Submit"
   
 
 interface ContextProps {
@@ -15,6 +18,8 @@ interface ContextProps {
    setProjectDetails: React.Dispatch<React.SetStateAction<ProjectDetails>>,
    resource: ResourceProps[],
    setResource: React.Dispatch<SetStateAction<ResourceProps[]>>,
+   budget: BudgetProps,
+   setBudget: React.Dispatch<SetStateAction<BudgetProps>>,
    status: string,
    setStatus: React.Dispatch<React.SetStateAction<string>>,
 }
@@ -34,16 +39,22 @@ function AddProjects() {
       keyDetails: [],
       milestones: []
     });
-
     const [resource, setResource] = useState<ResourceProps[]>([
-      {
-      name: '',
-      units: 0,
-      spent: 0,
-      quantity: ''
-    }
+      { name: '', units: '0', spent: '0', quantity: '' }
     ])
+   const [budget, setBudget] = useState<BudgetProps>({
+         resources: [
+            {
+               name: '',
+               units: '0',
+               spent: '0'
+            }
+         ],
+         totalBudget: '0',
+         quantity: ''
+      })
    const [status, setStatus] = useState<string>('just started')
+
 
    return (
       <main className='bg-white min-h-[100vh] flex flex-col gap-6 font-main'>
@@ -53,10 +64,12 @@ function AddProjects() {
          <MediaQuery minWidth={787}>
             <DesktopNav />
          </MediaQuery>
-         <form className="flex flex-col gap-6 mt-20">
-            <AddContext.Provider value={{projectDetails, setProjectDetails, status, setStatus, resource, setResource}}>
+         <form className="flex flex-col mt-16" noValidate onSubmit={(event) => handleSubmit(event, projectDetails, resource, budget)}>
+            <AddContext.Provider value={{projectDetails, setProjectDetails, status, setStatus, resource, setResource, budget, setBudget}}>
                <AddProjectDetails />
                <AddResources />
+               <AddBudget />
+               <Submit />
             </AddContext.Provider> 
          </form>
          <Footer />

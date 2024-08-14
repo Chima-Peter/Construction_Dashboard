@@ -11,7 +11,7 @@ function Budget() {
    const COLORS = ['blue', 'lightgreen', 'orange', 'purple', 'red', '#8D99AE', '#D4A5A5']
 
    const sum = budget?.budget.resources.reduce((start, current) => {
-      return start + current.spent
+      return start + Number(current.spent)
       }, 0);
 
    return (
@@ -39,7 +39,7 @@ function Budget() {
                      ))
                   }
                   <li className="font-semibold mt-2 text-xs" >
-                     {`Total amount spent: ${budget?.budget.quantity}${numberWithCommas(budget?.budget.totalBudget ?? 0)}`}
+                     {`Total amount spent: ${budget?.budget.quantity}${numberWithCommas(Number(budget?.budget.totalBudget) ?? 0)}`}
                   </li>
                </ul>
                <div className='md:border-r md:border-gray-300'></div>
