@@ -14,7 +14,7 @@ function DesktopNav() {
       return () => window.removeEventListener('scroll', scrollEffect)
    })
    return (
-      <nav className={`w-[100%] bg-[blue] p-4 flex justify-between font-main fixed top-0 ${scrollNav ? 'shadow-lg shadow-gray-200' : ''}`}>
+      <nav className={`w-[100%] bg-[blue] p-4 flex justify-between font-main z-50 fixed top-0 ${scrollNav ? 'shadow-lg shadow-gray-300' : ''}`}>
          <h1 className="text-2xl font-semibold text-white">
             Seamless Construction
          </h1>

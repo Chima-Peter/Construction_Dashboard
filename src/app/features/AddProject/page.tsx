@@ -2,8 +2,6 @@ import MediaQuery from "react-responsive"
 import Footer from "../../utils/footer"
 import MobileNav from "../../utils/mobile_nav"
 import DesktopNav from "../../utils/DesktopNav"
-//import { useAppDispatch } from "../../redux/hooks"
-//import { addProject } from "./AddProjectSlice"
 import AddProjectDetails from "./projectDetails/AddProjectDetails"
 import React, { createContext, SetStateAction, useContext, useState } from "react"
 import { BudgetProps, ProjectDetails, ResourceProps } from "../../redux/initialState"
@@ -64,7 +62,7 @@ function AddProjects() {
          <MediaQuery minWidth={787}>
             <DesktopNav />
          </MediaQuery>
-         <form className="flex flex-col mt-16" noValidate onSubmit={(event) => handleSubmit(event, projectDetails, resource, budget)}>
+         <form className="flex flex-col mt-16" noValidate onSubmit={(event) => handleSubmit(event, projectDetails, resource, budget, status)}>
             <AddContext.Provider value={{projectDetails, setProjectDetails, status, setStatus, resource, setResource, budget, setBudget}}>
                <AddProjectDetails />
                <AddResources />

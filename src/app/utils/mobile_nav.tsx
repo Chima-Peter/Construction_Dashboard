@@ -56,7 +56,7 @@ function MobileNav() {
    // animation to show menu
 
   return (
-      <nav className={`flex bg-[blue] w-[100%] flex-col gap-4 p-4 px-4  fixed top-0 ${scrollNav ? 'shadow-lg shadow-gray-200' : ''}`}>
+      <nav className={`flex bg-[blue] z-50 w-[100%] flex-col gap-4 p-4 px-4  fixed top-0 ${scrollNav ? 'shadow-lg shadow-gray-300' : ''}`}>
          <div className="w-[100%] flex justify-between items-center">
             <h1 className="text-xl font-semibold text-white">
                Seamless Construction
