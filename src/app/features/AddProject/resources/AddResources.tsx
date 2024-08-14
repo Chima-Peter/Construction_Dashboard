@@ -40,17 +40,17 @@ export default function AddResources() {
             {
                resourceArray.map((_entry:any, index: any) => (
                   <div className='w-[100%] flex flex-wrap justify-between gap-y-4' key={index}>
-                     <label htmlFor={`resource_name-${index}`} className="text-xs font-medium gap-1 w-[100%] md:w-[48%] lg:w-[23%] flex-wrap flex flex-col"> Resource {index + 1}
-                        <input type="text" autoComplete="off" value={resource[index].name} onBlur={handleBlur} onChange={(event) => handleInput(event, index)} name="name" id={`resource_name-${index}`} className="capitalize w-[100%] px-4 py-2 rounded-md border-b-2 border-b-gray-200 outline-none text-[16px] focus:shadow-lg placeholder:text-xs placeholder:text-gray-500 placeholder:normal-case" />
+                     <label htmlFor={`resource_name-${index}`} className="text-xs font-medium gap-0 w-[100%] md:w-[48%] lg:w-[23%] flex-wrap flex flex-col"> Resource {index + 1}
+                        <input type="text" autoComplete="off" value={resource[index].name} onBlur={handleBlur} onChange={(event) => handleInput(event, index)} name="name" id={`resource_name-${index}`} className="capitalize w-[100%] px-4 py-2 border-b-2 border-b-gray-200 outline-none text-[16px] focus:border-black placeholder:text-xs placeholder:text-gray-500 placeholder:normal-case" />
                      </label>
-                     <label htmlFor={`resource_spent-${index}`} className="text-xs font-medium gap-1 w-[100%] md:w-[48%] lg:w-[23%] flex-wrap flex flex-col"> Used Quantity
-                        <input type="text" autoComplete="off" value={resource[index].spent} onBlur={handleBlur} onChange={(event) => handleInput(event, index)} name="spent" id={`resource_spent-${index}`} className="capitalize w-[100%] px-4 py-2 rounded-md border-b-2 border-b-gray-200 outline-none text-[16px] focus:shadow-lg placeholder:text-xs placeholder:text-gray-500 placeholder:normal-case" />
+                     <label htmlFor={`resource_spent-${index}`} className="text-xs font-medium gap-0 w-[100%] md:w-[48%] lg:w-[23%] flex-wrap flex flex-col"> Used Quantity
+                        <input type="text" autoComplete="off" value={resource[index].spent} onBlur={handleBlur} onChange={(event) => handleInput(event, index)} name="spent" id={`resource_spent-${index}`} className="capitalize w-[100%] px-4 py-2 border-b-2 border-b-gray-200 outline-none text-[16px] focus:border-black placeholder:text-xs placeholder:text-gray-500 placeholder:normal-case" />
                      </label>
-                     <label htmlFor={`resource_units-${index}`} className="text-xs font-medium gap-1 w-[100%] md:w-[48%] lg:w-[23%] flex-wrap flex flex-col"> Total Quantity
-                        <input type="text" autoComplete="off" onWheel={() => {event?.preventDefault()}} value={resource[index].units} onBlur={handleBlur} onChange={(event) => handleInput(event, index)} name="units" id={`resource_units-${index}`} className="capitalize w-[100%] px-4 py-2 rounded-md border-b-2 border-b-gray-200 outline-none text-[16px] focus:shadow-lg placeholder:text-xs placeholder:text-gray-500 placeholder:normal-case" />
+                     <label htmlFor={`resource_units-${index}`} className="text-xs font-medium gap-0 w-[100%] md:w-[48%] lg:w-[23%] flex-wrap flex flex-col"> Total Quantity
+                        <input type="text" autoComplete="off" onWheel={() => {event?.preventDefault()}} value={resource[index].units} onBlur={handleBlur} onChange={(event) => handleInput(event, index)} name="units" id={`resource_units-${index}`} className="capitalize w-[100%] px-4 py-2 border-b-2 border-b-gray-200 outline-none text-[16px] focus:border-black placeholder:text-xs placeholder:text-gray-500 placeholder:normal-case" />
                      </label>
-                     <label htmlFor={`resource_quantity-${index}`} className="text-xs font-medium gap-1 w-[100%] md:w-[48%] lg:w-[23%] flex-wrap flex flex-col"> Resource Measurement
-                        <input type="text" autoComplete="off" value={resource[index].quantity} onBlur={handleBlur} onChange={(event) => handleInput(event, index)} name="quantity" id={`resource_quantity-${index}`} className="w-[100%] px-4 py-2 rounded-md border-b-2 border-b-gray-200 outline-none text-[16px] focus:shadow-lg placeholder:text-xs placeholder:text-gray-500 placeholder:normal-case" />
+                     <label htmlFor={`resource_quantity-${index}`} className="text-xs font-medium gap-0 w-[100%] md:w-[48%] lg:w-[23%] flex-wrap flex flex-col"> Resource Measurement
+                        <input type="text" autoComplete="off" value={resource[index].quantity} onBlur={handleBlur} onChange={(event) => handleInput(event, index)} name="quantity" id={`resource_quantity-${index}`} className="w-[100%] px-4 py-2 border-b-2 border-b-gray-200 outline-none text-[16px] focus:border-black placeholder:text-xs placeholder:text-gray-500 placeholder:normal-case" />
                      </label>
                      {
                         (resourceArray.length > 1) && <div className='w-[100%] flex justify-end'>

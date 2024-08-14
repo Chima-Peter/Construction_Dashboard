@@ -19,8 +19,6 @@ export default function AddBudget() {
       tempResource.resources = newTemp
       setBudget(tempResource)
       
-      setBudget(tempResource)
-
       // add new index to resource array
       let temp = [...resourceArray]
       temp.push(1)
@@ -48,14 +46,14 @@ export default function AddBudget() {
             {
                resourceArray.map((_entry:any, index: any) => (
                   <div className='w-[100%] flex flex-wrap justify-between gap-y-4' key={index}>
-                     <label htmlFor={`budget_name-${index}`} className="text-xs font-medium gap-1 w-[100%] md:w-[32%] flex-wrap flex flex-col"> Resource {index + 1}
-                        <input type="text" autoComplete="off" value={budget.resources[index].name} onBlur={handleBlur} onChange={(event) => handleResourceInput(event, index)} name="name" id={`budget_name-${index}`} className="capitalize w-[100%] px-4 py-2 rounded-md border-b-2 border-b-gray-200 outline-none text-[16px] focus:shadow-lg placeholder:text-xs placeholder:text-gray-500 placeholder:normal-case" />
+                     <label htmlFor={`budget_name-${index}`} className="text-xs font-medium gap-0 w-[100%] md:w-[32%] flex-wrap flex flex-col"> Resource {index + 1}
+                        <input type="text" autoComplete="off" value={budget.resources[index].name} onBlur={handleBlur} onChange={(event) => handleResourceInput(event, index)} name="name" id={`budget_name-${index}`} className="capitalize w-[100%] px-4 py-2  border-b-2 border-b-gray-200 outline-none text-[16px] focus:border-black placeholder:text-xs placeholder:text-gray-500 placeholder:normal-case" />
                      </label>
-                     <label htmlFor={`budget_spent-${index}`} className="text-xs font-medium gap-1 w-[100%] md:w-[32%] flex-wrap flex flex-col"> Amount Used
-                        <input type="number" autoComplete="off" value={budget.resources[index].spent} onBlur={handleBlur} onChange={(event) => handleResourceInput(event, index)} name="spent" id={`budget_spent-${index}`} className="capitalize w-[100%] px-4 py-2 rounded-md border-b-2 border-b-gray-200 outline-none text-[16px] focus:shadow-lg placeholder:text-xs placeholder:text-gray-500 placeholder:normal-case" />
+                     <label htmlFor={`budget_spent-${index}`} className="text-xs font-medium gap-0 w-[100%] md:w-[32%] flex-wrap flex flex-col"> Amount Used
+                        <input type="number" autoComplete="off" value={budget.resources[index].spent} onBlur={handleBlur} onChange={(event) => handleResourceInput(event, index)} name="spent" id={`budget_spent-${index}`} className="capitalize w-[100%] px-4 py-2  border-b-2 border-b-gray-200 outline-none text-[16px] focus:border-black placeholder:text-xs placeholder:text-gray-500 placeholder:normal-case" />
                      </label>
-                     <label htmlFor={`budget_units-${index}`} className="text-xs font-medium gap-1 w-[100%] md:w-[32%] flex-wrap flex flex-col"> Allocated Budget
-                        <input type="number" autoComplete="off" value={budget.resources[index].units} onBlur={handleBlur} onChange={(event) => handleResourceInput(event, index)} name="units" id={`budget_units-${index}`} className="capitalize w-[100%] px-4 py-2 rounded-md border-b-2 border-b-gray-200 outline-none text-[16px] focus:shadow-lg placeholder:text-xs placeholder:text-gray-500 placeholder:normal-case" />
+                     <label htmlFor={`budget_units-${index}`} className="text-xs font-medium gap-0 w-[100%] md:w-[32%] flex-wrap flex flex-col"> Allocated Budget
+                        <input type="number" autoComplete="off" value={budget.resources[index].units} onBlur={handleBlur} onChange={(event) => handleResourceInput(event, index)} name="units" id={`budget_units-${index}`} className="capitalize w-[100%] px-4 py-2  border-b-2 border-b-gray-200 outline-none text-[16px] focus:border-black placeholder:text-xs placeholder:text-gray-500 placeholder:normal-case" />
                      </label>
                      {
                         (resourceArray.length > 1) && <div className='w-[100%] flex justify-end'>
@@ -67,8 +65,8 @@ export default function AddBudget() {
                   </div>
                ))
             }
-            <label htmlFor='total' className="text-xs font-medium gap-1 w-[100%] md:w-[200px] flex-wrap flex flex-col"> Project's Total Budget
-               <input type="number" autoComplete="off" onWheel={() => {event?.preventDefault()}} value={budget.totalBudget} onBlur={handleBlur} onChange={handleInput} name="total" id='total' className="capitalize w-[100%] px-4 py-2 rounded-md border-b-2 border-b-gray-200 outline-none text-[16px] focus:shadow-lg placeholder:text-xs placeholder:text-gray-500 placeholder:normal-case" />
+            <label htmlFor='total' className="text-xs font-medium gap-0 w-[100%] md:w-[200px] flex-wrap flex flex-col"> Project's Total Budget
+               <input type="number" autoComplete="off" onWheel={() => {event?.preventDefault()}} value={budget.totalBudget} onBlur={handleBlur} onChange={handleInput} name="total" id='total' className="capitalize w-[100%] px-4 py-2  border-b-2 border-b-gray-200 outline-none text-[16px] focus:border-black placeholder:text-xs placeholder:text-gray-500 placeholder:normal-case" />
             </label>
          </div>
          <div className='w-[100%] mt-1'>

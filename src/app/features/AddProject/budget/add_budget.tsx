@@ -8,7 +8,10 @@ export const useHandleResourceInput = () => {
       const regex = /^[0-9]*$/
       let temp = { ...budget }
       let changeResource = temp.resources[index]
-      
+
+      event.target.style.border = 'none'
+      event.target.style.borderBottom = '2px solid lightgray'
+
       if (name === "name")
          changeResource[name] = value
       else if (name === "units" || name === "spent")
@@ -26,7 +29,10 @@ export const useHandleInput = () => {
    return (event: React.ChangeEvent<HTMLInputElement>) => {
       const { value } = event.target
       let temp = { ...budget }
-      
+
+      event.target.style.border = 'none'
+      event.target.style.borderBottom = '2px solid lightgray'
+
       if (regex.test(value)) temp.totalBudget = value;
 
       setBudget(temp)

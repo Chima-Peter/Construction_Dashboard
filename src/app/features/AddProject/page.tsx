@@ -7,9 +7,8 @@ import React, { createContext, SetStateAction, useContext, useState } from "reac
 import { BudgetProps, ProjectDetails, ResourceProps } from "../../redux/initialState"
 import AddResources from "./resources/AddResources"
 import AddBudget from "./budget/AddBudget"
-import Submit from "./submit/SubmitButton"
-import handleSubmit from "./submit/Submit"
-  
+import Submit from "../../utils/submit/SubmitButton"
+import { useHandleSubmit } from "../../utils/submit/HandleSubmit"  
 
 interface ContextProps {
    projectDetails: ProjectDetails,
@@ -26,16 +25,14 @@ interface ContextProps {
 const AddContext =  createContext<ContextProps | undefined>(undefined)
 
 function AddProjects() {
-   //const dispatch = useAppDispatch()
-   // use ref to validate form
    const [projectDetails, setProjectDetails] = useState<ProjectDetails>({
       name: '',
       manager: '',
       progress: 0,
       startDate: '',
       endDate: '',
-      keyDetails: [],
-      milestones: []
+      keyDetails: [''],
+      milestones: ['']
     });
     const [resource, setResource] = useState<ResourceProps[]>([
       { name: '', units: '0', spent: '0', quantity: '' }
@@ -54,6 +51,9 @@ function AddProjects() {
    const [status, setStatus] = useState<string>('just started')
 
 
+   const handleSubmit = useHandleSubmit();
+
+
    return (
       <main className='bg-white min-h-[100vh] flex flex-col gap-6 font-main'>
          <MediaQuery maxWidth={786}>
@@ -62,7 +62,7 @@ function AddProjects() {
          <MediaQuery minWidth={787}>
             <DesktopNav />
          </MediaQuery>
-         <form className="flex flex-col mt-16" noValidate onSubmit={(event) => handleSubmit(event, projectDetails, resource, budget, status)}>
+         <form className="flex flex-col mt-16" onSubmit={(event) => handleSubmit(event, projectDetails, resource, budget, status)}>
             <AddContext.Provider value={{projectDetails, setProjectDetails, status, setStatus, resource, setResource, budget, setBudget}}>
                <AddProjectDetails />
                <AddResources />

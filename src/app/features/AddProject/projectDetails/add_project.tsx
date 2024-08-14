@@ -6,7 +6,8 @@ export function useHandleInput() {
 
    return (event: React.ChangeEvent<HTMLInputElement>) => {
       setProjectDetails({ ...projectDetails, [event.target.name]: event.target.value })
-      event.target.style.border = '1px solid lightgray'
+      event.target.style.border = 'none'
+      event.target.style.borderBottom = '2px solid lightgray'
    }
  };
  
@@ -35,13 +36,32 @@ export function useHandleInput() {
    }
  }
 
- // if (formRef.current) {
-   //    formRef.current.map((_item: any, index: any) => {
-   //       if (formRef.current[index]?.value == '') {
-            //       formRef.current[index].style.border = '2px solid red'
-            //       formRef.current[index]?.placeholder = 'This field is required'
-            // }
-   //    })
-   // }
+ export const useHandleMilestone = () => {
+   const { projectDetails, setProjectDetails } = useAddContext()
 
- 
+   return (event: React.ChangeEvent<HTMLInputElement>, index: number) => {
+      const { value } = event.target
+      let temp = { ...projectDetails }
+      temp.milestones[index] = value
+
+      event.target.style.border = 'none'
+      event.target.style.borderBottom = '2px solid lightgray'
+
+      setProjectDetails(temp)
+   }
+}
+
+export const useHandleKeyDetails = () => {
+   const { projectDetails, setProjectDetails } = useAddContext()
+
+   return (event: React.ChangeEvent<HTMLInputElement>, index: number) => {
+      const { value } = event.target
+      let temp = { ...projectDetails }
+      temp.keyDetails[index] = value
+
+      event.target.style.border = 'none'
+      event.target.style.borderBottom = '2px solid lightgray'
+
+      setProjectDetails(temp)
+   }
+}

@@ -16,7 +16,9 @@ export function useHandleInput() {
       }
       temp[index] = changeTemp
       setResource(temp)
-      event.target.style.border = '1px solid lightgray'
+
+      event.target.style.border = 'none'
+      event.target.style.borderBottom = '2px solid lightgray'
    }
  };
  
