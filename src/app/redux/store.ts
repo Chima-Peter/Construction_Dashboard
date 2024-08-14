@@ -1,12 +1,14 @@
 import { configureStore } from "@reduxjs/toolkit"
 import ViewProjectReducer from "../features/ViewProject/ViewProjectSlice"
 import AddProjectReducer from "../features/AddProject/AddProjectSlice"
+import EditProjectReducer from "../features/EditProject/EditProjectSlice"
 
 // Create our store using configureStore
 export const store = configureStore({
    reducer: {
       view: ViewProjectReducer,
-      add: AddProjectReducer
+      add: AddProjectReducer,
+      edit: EditProjectReducer,
    }
 })
 
