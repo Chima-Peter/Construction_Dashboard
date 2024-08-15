@@ -96,7 +96,7 @@ function MobileNav() {
                      </NavLink>
                   </li>
                   <li>
-                     <NavLink to={'_'}  className="text-xs font-[500] text-white hover:border-b-2 pb-1 border-b-white">
+                     <NavLink to={'/about'}  className="text-xs font-[500] text-white hover:border-b-2 pb-1 border-b-white">
                         About us
                      </NavLink>
                   </li>

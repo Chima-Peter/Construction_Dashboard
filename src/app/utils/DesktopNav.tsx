@@ -35,7 +35,7 @@ function DesktopNav() {
                </NavLink>
             </li>
             <li>
-               <NavLink to={'/about'} className="text-xs text-white font-medium pb-1">
+               <NavLink to={'/'} className="text-xs text-white font-medium pb-1">
                   About us
                </NavLink>
             </li>
