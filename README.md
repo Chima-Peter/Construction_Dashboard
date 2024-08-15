@@ -39,17 +39,14 @@ You can view the live demo of the application [here][https://chima-peter.github.
 ### Add Project
 
 1. **Navigate to the "Add Project" Page**
-   - Open your browser and go to the "Add Project" page of the application.
+   - Open your browser and go to the "Add" page of the application.
 
 2. **Fill Out the Project Form**
    - **Project Name**: Enter a descriptive name for your project.
    - **Budget**: Specify the total budget allocated for the project in millions.
    - **Start Date**: Select the project's start date from the date picker.
    - **End Date**: Choose the project's end date from the date picker.
-   - **Resources**: Add details for any resources required for the project, such as materials or manpower. This section might include:
-     - **Resource Name**: Name of the resource.
-     - **Quantity**: Amount of the resource required.
-     - **Spent**: Amount spent on the resource.
+   - **Resources**: Add details for any resources required for the project, such as materials or manpower.
 
 3. **Submit the Form**
    - Click the "Submit" button to save the new project. The project will be added to the list of projects and can be viewed or edited later.
@@ -85,7 +82,7 @@ You can view the live demo of the application [here][https://chima-peter.github.
    - Check the detailed information about the selected project, including:
      - **Project Progress**: View the current progress of the project, usually represented as a percentage.
      - **Resource Allocation**: See how resources are distributed and utilized within the project.
-     - **Budget Tracking**: Review the budget status, including total budget, spent amount, and remaining balance.
+     - **Budget Tracking**: Review the budget status, including total budget and spent amount.
 
 4. **Visualize Data**
    - Explore visual representations such as charts and graphs that provide insights into project progress, resource usage, and budget expenditure.
