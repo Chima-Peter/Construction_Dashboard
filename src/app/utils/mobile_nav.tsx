@@ -91,7 +91,7 @@ function MobileNav() {
                      </NavLink>
                   </li>
                   <li>
-                     <NavLink to={'_'}  className="text-xs font-[500] text-white hover:border-b-2 pb-1 border-b-white">
+                     <NavLink to={'/edit'}  className="text-xs font-[500] text-white hover:border-b-2 pb-1 border-b-white">
                         Edit Project
                      </NavLink>
                   </li>

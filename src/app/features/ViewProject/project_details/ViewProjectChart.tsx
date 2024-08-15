@@ -1,8 +1,8 @@
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 import { PieChart, Pie, Sector, Cell } from 'recharts';
 import { useAppSelector } from "../../../redux/hooks" 
 import { selectProjectById } from '../ViewProjectSlice';
-import { IdContext } from '../page';
+import { useSearchContext } from '../page';
 
 // Define colors for the pie chart slices
 const COLORS = ['blue', 'lightgray'];
@@ -43,7 +43,7 @@ const renderActiveShape = (props: any) => {
 };
 
 export default function ViewProjectChart() {
-   const id = useContext(IdContext)
+   const { id } = useSearchContext()
    const ProjectProgress = useAppSelector(state => selectProjectById(state,id))
 
    const [activeIndex, setActiveIndex] = useState<number>(0);

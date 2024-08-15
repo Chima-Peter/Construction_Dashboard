@@ -16,6 +16,7 @@ export default function PrepareData (projectDetails: ProjectDetails, resources: 
       id: nanoid(),
       status: status
    }
+   console.log(submitData)
 
    return submitData
 }

@@ -2,11 +2,10 @@ import { useAppSelector } from '../../../redux/hooks'
 import { selectProjectById } from '../ViewProjectSlice'
 import BudgetChart from './BudgetChart'
 import numberWithCommas from '../../../utils/numberWithCommas'
-import { useContext } from 'react'
-import { IdContext } from '../page'
+import { useSearchContext } from '../page'
 
 function Budget() {
-   const id = useContext(IdContext)
+   const { id } = useSearchContext()
    const budget = useAppSelector((state) => selectProjectById(state, id))
    const COLORS = ['blue', 'lightgreen', 'orange', 'purple', 'red', '#8D99AE', '#D4A5A5']
 

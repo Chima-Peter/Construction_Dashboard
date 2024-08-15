@@ -1,12 +1,11 @@
-import { useContext } from "react"
 import { useAppSelector } from "../../../redux/hooks" 
 import numberWithCommas from "../../../utils/numberWithCommas"
 import { selectProjectById } from "../ViewProjectSlice"
 import ResourcesChart from "./ResourcesChart"
-import { IdContext } from "../page"
+import { useSearchContext } from "../page"
 
 function Resources() {
-   const id = useContext(IdContext)
+   const { id } = useSearchContext()
    let resources = useAppSelector(state => selectProjectById(state, id))
 
    return (

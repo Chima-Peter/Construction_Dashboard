@@ -1,9 +1,7 @@
-import numberWithCommas from "../../../utils/numberWithCommas";
-import removeCommas from "../../../utils/removeCommas";
-import { useAddContext } from "../page";
+import { useEditContext } from "../page"
 
 export function useHandleInput() {
-   const { resource, setResource } = useAddContext()
+   const { resource, setResource } = useEditContext()
    const regex = /^[0-9]*$/
 
    return (event: React.ChangeEvent<HTMLInputElement>, index:number) => {
@@ -12,8 +10,7 @@ export function useHandleInput() {
       let { name, value } = event.target;
       
       if (name === "units" || name === "spent") {
-         value = removeCommas(value)
-         if (regex.test(value)) changeTemp[name] = numberWithCommas(Number(value))
+         if (regex.test(value)) changeTemp[name] = value
       } else if (name === "name" || name === "quantity") {
          changeTemp[name] = value
       }

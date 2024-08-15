@@ -10,9 +10,17 @@ export default function CheckBudget(budget: BudgetProps) {
          alert (`Enter project name for Resource ${index}.`)
          result = false
       }
+      else if (validator.isEmpty(resources[index].spent)) {
+         alert (`Amount spent for ${resources[index].name} should be 0 or something else.`)
+         result = false
+      }
       else if (resources[index].units === '0') {
             alert (`Budget for ${resources[index].name} can't be 0`)
             result = false
+      }
+      if (Number(resources[index].spent) > Number(resources[index].units)) {
+         alert (`Amount spent for Resource ${resources[index].name ?? index} cannot be more than the amount allocated.`)
+         result = false
       }
    })
 

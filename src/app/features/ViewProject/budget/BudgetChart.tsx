@@ -1,7 +1,6 @@
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from "recharts";
 import { selectProjectById } from "../ViewProjectSlice";
-import { useContext } from "react";
-import { IdContext } from "../page";
+import { useSearchContext } from "../page";
 import { useAppSelector } from "../../../redux/hooks" 
 import numberWithCommas from "../../../utils/numberWithCommas"
 
@@ -31,7 +30,7 @@ const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, per
 
 
 const BudgetChart = () => {
-   const id = useContext(IdContext)
+   const { id } = useSearchContext()
    const budget = useAppSelector((state) => selectProjectById(state, id))
 
 

@@ -1,7 +1,6 @@
 import { BarChart, Bar, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, XAxis } from 'recharts';
 import { selectProjectById } from '../ViewProjectSlice';
-import { useContext } from 'react';
-import { IdContext } from '../page';
+import { useSearchContext } from '../page';
 import { useAppSelector } from "../../../redux/hooks" 
 
 const renderCustomBarLabel = ({ x, y, width, value }: any) => {
@@ -31,7 +30,7 @@ function CustomTooltip({ payload, active }: any) {
 }
 
 export default function ResourcesChart() {
-   const id = useContext(IdContext)
+   const { id } = useSearchContext()
   let resource = useAppSelector(state => selectProjectById(state, id));
 
   const data: any[] | undefined = []

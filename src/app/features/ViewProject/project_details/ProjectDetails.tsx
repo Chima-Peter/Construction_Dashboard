@@ -1,12 +1,11 @@
-import { useContext } from "react"
 import { useAppSelector } from "../../../redux/hooks" 
 import { selectProjectById } from "../ViewProjectSlice"
 import ViewProjectChart from "./ViewProjectChart"
-import { IdContext } from "../page"
+import { useSearchContext } from "../page"
 
 
 function ProjectDetails() {
-   const id = useContext(IdContext)
+   const { id } = useSearchContext()
    const ProjectDetailsSelector = useAppSelector((state) => selectProjectById(state, id))
 
    return (

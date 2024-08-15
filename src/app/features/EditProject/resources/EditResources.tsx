@@ -1,8 +1,8 @@
-import { useHandleBlur, useHandleInput } from './add_resource'
-import { useAddContext } from '../page'
+import { useHandleBlur, useHandleInput } from './edit_resource'
+import { useEditContext } from '../page'
 
-export default function AddResources() {
-   const { resource,setResource } = useAddContext()
+export default function EditResources() {
+   const { resource,setResource } = useEditContext()
    const handleBlur = useHandleBlur()
    const handleInput = useHandleInput()
    

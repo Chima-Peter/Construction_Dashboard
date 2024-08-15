@@ -1,10 +1,11 @@
-import { useHandleResourceInput } from './add_budget'
-import { useHandleBlur } from '../projectDetails/add_project'
-import { useAddContext } from '../page'
+import { useHandleInput, useHandleResourceInput } from './edit_budget'
+import { useHandleBlur } from '../projectDetails/edit_project'
+import { useEditContext } from '../page'
 
-export default function AddBudget() {
-   const { budget,setBudget } = useAddContext()
+export default function EditBudget() {
+   const { budget, setBudget } = useEditContext()
    const handleBlur = useHandleBlur()
+   const handleInput = useHandleInput()
    const handleResourceInput = useHandleResourceInput()
    
 
@@ -15,6 +16,7 @@ export default function AddBudget() {
       newTemp.push({name: '', units: '0', spent: '0'})
       tempResource.resources = newTemp
       setBudget(tempResource)
+
    }
 
    const removeLastResource = (deleteIndex:number) => {
@@ -38,10 +40,10 @@ export default function AddBudget() {
                         <input type="text" autoComplete="off" value={budget.resources[index].name} onBlur={handleBlur} onChange={(event) => handleResourceInput(event, index)} name="name" id={`budget_name-${index}`} className="capitalize w-[100%] px-4 py-2  border-b-2 border-b-gray-200 outline-none text-[13px] focus:border-black placeholder:text-xs placeholder:text-gray-500 placeholder:normal-case" />
                      </label>
                      <label htmlFor={`budget_spent-${index}`} className="text-xs font-medium gap-0 w-[100%] md:w-[32%] flex-wrap flex flex-col"> Amount Used
-                        <input type="text" autoComplete="off" value={budget.resources[index].spent} onBlur={handleBlur} onChange={(event) => handleResourceInput(event, index)} name="spent" id={`budget_spent-${index}`} className="capitalize w-[100%] px-4 py-2  border-b-2 border-b-gray-200 outline-none text-[13px] focus:border-black placeholder:text-xs placeholder:text-gray-500 placeholder:normal-case" />
+                        <input type="number" autoComplete="off" value={budget.resources[index].spent} onBlur={handleBlur} onChange={(event) => handleResourceInput(event, index)} name="spent" id={`budget_spent-${index}`} className="capitalize w-[100%] px-4 py-2  border-b-2 border-b-gray-200 outline-none text-[13px] focus:border-black placeholder:text-xs placeholder:text-gray-500 placeholder:normal-case" />
                      </label>
                      <label htmlFor={`budget_units-${index}`} className="text-xs font-medium gap-0 w-[100%] md:w-[32%] flex-wrap flex flex-col"> Allocated Budget
-                        <input type="text" autoComplete="off" value={budget.resources[index].units} onBlur={handleBlur} onChange={(event) => handleResourceInput(event, index)} name="units" id={`budget_units-${index}`} className="capitalize w-[100%] px-4 py-2  border-b-2 border-b-gray-200 outline-none text-[13px] focus:border-black placeholder:text-xs placeholder:text-gray-500 placeholder:normal-case" />
+                        <input type="number" autoComplete="off" value={budget.resources[index].units} onBlur={handleBlur} onChange={(event) => handleResourceInput(event, index)} name="units" id={`budget_units-${index}`} className="capitalize w-[100%] px-4 py-2  border-b-2 border-b-gray-200 outline-none text-[13px] focus:border-black placeholder:text-xs placeholder:text-gray-500 placeholder:normal-case" />
                      </label>
                      {
                         (budget.resources.length > 1) && <div className='w-[100%] flex justify-end'>
@@ -54,7 +56,7 @@ export default function AddBudget() {
                ))
             }
             <label htmlFor='total' className="text-xs font-medium gap-0 w-[100%] md:w-[200px] flex-wrap flex flex-col"> Project's Total Budget
-               <input type="text" readOnly autoComplete="off" onWheel={() => {event?.preventDefault()}} value={budget.totalBudget} onBlur={handleBlur} name="total" id='total' className="capitalize w-[100%] px-4 py-2  border-b-2 border-b-gray-200 outline-none text-[13px] focus:border-black placeholder:text-xs placeholder:text-gray-500 placeholder:normal-case" />
+               <input type="number" autoComplete="off" onWheel={() => {event?.preventDefault()}} value={budget.totalBudget} onBlur={handleBlur} onChange={handleInput} name="total" id='total' className="capitalize w-[100%] px-4 py-2  border-b-2 border-b-gray-200 outline-none text-[13px] focus:border-black placeholder:text-xs placeholder:text-gray-500 placeholder:normal-case" />
             </label>
          </div>
          <div className='w-[100%] mt-1'>
