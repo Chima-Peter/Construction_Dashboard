@@ -33,15 +33,3 @@ export const useHandleResourceInput = () => {
       setBudget(temp)
    }
 }
-
-export const useHandleInput = () => {
-   const { budget, setBudget } = useAddContext()
-
-   return (value:string) => {
-      let temp = { ...budget }
-
-      temp.totalBudget = value;
-
-      setBudget(temp)
-   }
-}

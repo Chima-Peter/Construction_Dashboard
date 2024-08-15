@@ -1,10 +1,12 @@
+import numberWithCommas from "../../../utils/numberWithCommas"
+import removeCommas from "../../../utils/removeCommas"
 import { useEditContext } from "../page"
 
 export const useHandleResourceInput = () => {
    const { budget, setBudget } = useEditContext()
 
    return (event: React.ChangeEvent<HTMLInputElement>, index: number) => {
-      const { value, name } = event.target
+      let { value, name } = event.target
       const regex = /^[0-9]*$/
       let temp = { ...budget }
       let changeResource = temp.resources[index]
@@ -14,27 +16,20 @@ export const useHandleResourceInput = () => {
 
       if (name === "name")
          changeResource[name] = value
-      else if (name === "units" || name === "spent")
-         if (regex.test(value)) changeResource[name] = value
+
+      else if (name === "units" || name === "spent") {
+         value = removeCommas(value)
+         if (regex.test(value)) {
+            changeResource[name] = numberWithCommas(Number(value))
+            const sumUsed = budget.resources.reduce((start, current) => {
+               return start + Number(removeCommas(current.units))
+            }, 0)
+            temp.totalBudget =  numberWithCommas(sumUsed)
+         }
+      }
+      
 
       temp.resources[index] = changeResource
-      setBudget(temp)
-   }
-}
-
-export const useHandleInput = () => {
-   const { budget, setBudget } = useEditContext()
-   const regex = /^[0-9]*$/
-
-   return (event: React.ChangeEvent<HTMLInputElement>) => {
-      const { value } = event.target
-      let temp = { ...budget }
-
-      event.target.style.border = 'none'
-      event.target.style.borderBottom = '2px solid lightgray'
-
-      if (regex.test(value)) temp.totalBudget = value;
-
       setBudget(temp)
    }
 }

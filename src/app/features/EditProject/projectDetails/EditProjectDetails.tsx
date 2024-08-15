@@ -1,7 +1,7 @@
 import { useHandleSelectInput, useHandleInput, useHandleBlur, useHandleMilestone, useHandleKeyDetails } from "./edit_project"
+import { useEditContext } from "../page"
 import { projectStatuses } from "../../../redux/initialState"
 import { MdCancel } from "react-icons/md";
-import { useEditContext } from "../page";
 
 export default function EditProjectDetails() {
    const { status, projectDetails, setProjectDetails } = useEditContext()
@@ -11,14 +11,12 @@ export default function EditProjectDetails() {
    const handleMilestone = useHandleMilestone()
    const handleKeyDetail = useHandleKeyDetails()
 
-
    const addNewMilestone = () => {
       let tempResource = {...projectDetails}
       let newTemp = tempResource.milestones
       newTemp.push('')
       tempResource.milestones = newTemp
       setProjectDetails(tempResource)
-      
    }
 
    const removeLastMilestone = (deleteIndex:number) => {
@@ -26,7 +24,6 @@ export default function EditProjectDetails() {
       let changeTemp = [...temp.milestones.slice(0, deleteIndex), ...temp.milestones.slice(deleteIndex + 1)]
       temp.milestones = changeTemp
       setProjectDetails(temp)
-
    }
 
    const addNewKeyDetail = () => {
@@ -35,7 +32,6 @@ export default function EditProjectDetails() {
       newTemp.push('')
       tempResource.keyDetails = newTemp
       setProjectDetails(tempResource)
-      
    }
 
    const removeLastKeyDetail = (deleteIndex:number) => {
@@ -43,7 +39,6 @@ export default function EditProjectDetails() {
       let changeTemp = [...temp.keyDetails.slice(0, deleteIndex), ...temp.keyDetails.slice(deleteIndex + 1)]
       temp.keyDetails = changeTemp
       setProjectDetails(temp)
-
    }
 
    return (

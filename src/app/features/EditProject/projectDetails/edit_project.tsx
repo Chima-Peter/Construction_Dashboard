@@ -1,4 +1,4 @@
-import { useEditContext } from "../page"
+import { useEditContext } from "../page";
 
 export function useHandleInput() {
    // Can use the addContext because we're calling the fucntional component inside a descendant of the context

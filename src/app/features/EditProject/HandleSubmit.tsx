@@ -1,4 +1,4 @@
-import { addProject } from "./AddProjectSlice"
+import { editProject } from "./EditProjectSlice"
 import CheckBudget from "../../utils/submit/CheckBudget"
 import CheckProjectDetails from "../../utils/submit/CheckProjectDetails"
 import CheckResources from "../../utils/submit/CheckResources"
@@ -9,12 +9,12 @@ import { BudgetProps, ProjectDetails, ResourceProps } from "../../redux/initialS
 export const useHandleSubmit = () => {
    const dispatch = useAppDispatch()
    
-   return (projectDetails: ProjectDetails, resource: ResourceProps[], budget: BudgetProps, status: string, id: any) => {
+   return (projectDetails: ProjectDetails, resource: ResourceProps[], budget: BudgetProps, status: string, id:any) => {
 
       if (CheckProjectDetails(projectDetails)) {
             if (CheckResources(resource)) {
                if (CheckBudget(budget)) {
-                  dispatch(addProject(PrepareData(projectDetails, resource, budget, status, id)))
+                  dispatch(editProject(PrepareData(projectDetails, resource, budget, status, id)))
                   return true
                }
             }

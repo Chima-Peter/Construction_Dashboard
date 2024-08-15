@@ -8,9 +8,12 @@ export default function SetUp() {
    const { setProjectDetails, setResource, setBudget, setStatus, setShow, id } = useEditContext();
 
    // Always call useAppSelector
-   const data = useAppSelector((state) => id ? selectProjectById(state, id) : null);
+   const getData = useAppSelector((state) => id ? selectProjectById(state, id) : null);
+
 
    useEffect(() => {
+      // deep copy of the redux slice. this will prevent nested elements from in the original slice form being modified and thus escape any errors.
+      const data = JSON.parse(JSON.stringify(getData))
       if (id === '') {
          setShow(false);
       } else if (data) {
@@ -21,8 +24,7 @@ export default function SetUp() {
          setStatus(data.status);
          setShow(true);
       }
-      console.log(id)
-   }, [data, id]);
+   }, [getData, id]);
 
    return null; // Return null or a loading indicator if you want
 }

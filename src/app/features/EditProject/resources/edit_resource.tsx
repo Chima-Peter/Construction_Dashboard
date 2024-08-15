@@ -1,4 +1,6 @@
-import { useEditContext } from "../page"
+import numberWithCommas from "../../../utils/numberWithCommas";
+import removeCommas from "../../../utils/removeCommas";
+import { useEditContext } from "../page";
 
 export function useHandleInput() {
    const { resource, setResource } = useEditContext()
@@ -10,7 +12,8 @@ export function useHandleInput() {
       let { name, value } = event.target;
       
       if (name === "units" || name === "spent") {
-         if (regex.test(value)) changeTemp[name] = value
+         value = removeCommas(value)
+         if (regex.test(value)) changeTemp[name] = numberWithCommas(Number(value))
       } else if (name === "name" || name === "quantity") {
          changeTemp[name] = value
       }

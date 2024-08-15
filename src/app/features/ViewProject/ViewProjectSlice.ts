@@ -11,14 +11,13 @@ const ViewProjectSlice = createSlice({
    reducers: {},
    extraReducers: (builder) => {
       builder.addCase(addProject, (state, action: PayloadAction<ProjectProps>) => {
-         console.log('adding project to view slice')
          state.push(action.payload)
       });
       builder.addCase(editProject, (state, action: PayloadAction<ProjectProps>) => {
-         console.log('add change to project in view slice')
-         state.map((item) => {
-            if (item.id === action.payload.id)
-               item = action.payload
+         state.forEach((item: any, index: any) => {
+            if (item.id.toLowerCase() === action.payload.id.toLowerCase()) {
+               state[index] = action.payload;
+            }
          })
       })
    }

@@ -8,16 +8,15 @@ const EditSlice = createSlice({
    initialState: InitialState,
    reducers: {
       editProject: (state, action: PayloadAction<ProjectProps>) => {
-         console.log('save slice edit')
-         state.map((item) => {
-            if (item.id === action.payload.id)
-               item = action.payload
+         state.forEach((item: any, index: any) => {
+            if (item.id.toLowerCase() === action.payload.id.toLowerCase()) {
+               state[index] = action.payload;
+            }
          })
       }
    },
    extraReducers: (builder) => {
       builder.addCase(addProject, (state, action: PayloadAction<ProjectProps>) => {
-         console.log('adding to edit slice')
          state.push(action.payload)
       })
    }

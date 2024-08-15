@@ -56,7 +56,7 @@ function ProjectDetails() {
                   <h2 className="text-xs font-semibold tracking-wider uppercase">
                      {ProjectDetailsSelector?.projectDetails.name}
                   </h2>
-                  <h2 className="text-xs font-semibold tracking-wider">
+                  <h2 className="text-xs font-semibold tracking-wider capitalize">
                   {ProjectDetailsSelector?.projectDetails.manager}
                   </h2>
                   <h2  className="text-xs font-medium capitalize mb-2">

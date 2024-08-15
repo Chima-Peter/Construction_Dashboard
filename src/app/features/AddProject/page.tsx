@@ -57,32 +57,34 @@ function AddProjects() {
 
    const checkSubmit = () => {
       event?.preventDefault()
-      if (handleSubmit(projectDetails, resource, budget, status)) {
-         setProjectDetails({
-            name: '',
-            manager: '',
-            progress: 0,
-            startDate: '',
-            endDate: '',
-            keyDetails: [''],
-            milestones: ['']
-          })
-          setResource([
-            { name: '', units: '0', spent: '0', quantity: '' }
-          ])
-          setBudget({
-            resources: [
-               {
-                  name: '',
-                  units: '0',
-                  spent: '0'
-               }
-            ],
-            totalBudget: '0',
-            quantity: ''
-         })
-         setStatus('just started')
-      }
+      if (window.confirm('Confirm that you want to save data')) {
+         if (handleSubmit(projectDetails, resource, budget, status, null)) {
+            setProjectDetails({
+               name: '',
+               manager: '',
+               progress: 0,
+               startDate: '',
+               endDate: '',
+               keyDetails: [''],
+               milestones: ['']
+            })
+            setResource([
+               { name: '', units: '0', spent: '0', quantity: '' }
+            ])
+            setBudget({
+               resources: [
+                  {
+                     name: '',
+                     units: '0',
+                     spent: '0'
+                  }
+               ],
+               totalBudget: '0',
+               quantity: ''
+            })
+            setStatus('just started')
+         }
+      } else return
    }
 
    return (

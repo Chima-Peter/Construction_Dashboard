@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useState } from 'react'
 import { selectAllProjects, selectCompleteProjects, selectInProgressProjects, selectPausedProjects, selectNearCompletionProjects, selectNotStartedrojects, selectCancelledProjects, selectPlannedProjects } from '../ViewProject/ViewProjectSlice'
 import { useAppSelector } from '../../redux/hooks'
 import { ProjectProps, projectStatuses } from '../../redux/initialState'
@@ -6,9 +6,8 @@ import { useEditContext } from './page'
 
 export default function Search() {
 
-   const { setId } = useEditContext()
-   const inputRef = useRef<HTMLInputElement |null>(null)
-   const selectRef = useRef<HTMLSelectElement |null>(null)
+   const { setId, inputRef, selectRef } = useEditContext()
+   
    const [search, setSearch] = useState(false)
    const [searchResult, setSearchResult] = useState<ProjectProps[]>()
 

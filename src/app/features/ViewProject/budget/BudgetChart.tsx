@@ -3,6 +3,7 @@ import { selectProjectById } from "../ViewProjectSlice";
 import { useSearchContext } from "../page";
 import { useAppSelector } from "../../../redux/hooks" 
 import numberWithCommas from "../../../utils/numberWithCommas"
+import removeCommas from "../../../utils/removeCommas";
 
 const COLORS = ['blue', 'lightgreen', 'orange', 'purple', 'red', '#8D99AE', '#D4A5A5'];
 
@@ -48,7 +49,7 @@ const BudgetChart = () => {
       const data: any[] | undefined = []
 
       budget?.budget.resources.map((item) => {
-         data.push({ 'name': item.name, 'units': Number(item.units) })
+         data.push({ 'name': item.name, 'units': Number(removeCommas(item.units))})
       })
  
     return (

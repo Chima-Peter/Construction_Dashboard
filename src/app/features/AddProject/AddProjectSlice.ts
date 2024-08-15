@@ -7,7 +7,6 @@ const AddProjectSlice = createSlice({
    initialState: InitialState,
    reducers: {
       addProject: (state, action: PayloadAction<ProjectProps>) => {
-         console.log('adding project to add slice')
          state.push(action.payload)
       }
    }
