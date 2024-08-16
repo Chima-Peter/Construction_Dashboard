@@ -26,7 +26,7 @@ export default function AddBudget() {
    }
 
    return (
-      <section className='flex w-[100%] px-2 pt-2 pb-6 md:px-4 lg:px-8 flex-col rounded-sm justify-between gap-2'>
+      <section className='flex w-[100%] pt-2 pb-6 px-4 lg:px-8 flex-col rounded-sm justify-between gap-2'>
          <h2 className="text-lg font-semibold mb-4">
             Budget Allocation
          </h2>

@@ -42,7 +42,7 @@ export default function AddProjectDetails() {
    }
 
    return (
-      <section className="px-2 pt-4 pb-6 md:px-4 lg:px-8 rounded-sm w-[100%] flex flex-col gap-4">
+      <section className="pt-4 pb-6 px-4 lg:px-8 rounded-sm w-[100%] flex flex-col gap-4">
          <h1 className="text-lg font-semibold">
             Project Details
          </h1>
